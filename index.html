@@ -1,372 +1,396 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Los Santos Hard RP | Resmi Web Sitesi</title>
-    <!-- Tailwind CSS -->
+    <title>ParadiseV Roleplay</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome (İkonlar için) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- GSAP ve ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0f0518',
+                        neonPurple: '#9d00ff',
+                        neonPink: '#ff007f',
+                        sunsetOrange: '#ff7e5f',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        logo: ['Pacifico', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Pacifico&display=swap');
 
-        :root {
-            --primary: #ef4444; /* Hard RP'ye uygun Kırmızı / Koyu tema */
-            --dark-bg: #09090b;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--dark-bg);
-            color: #f8fafc;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        /* Özel Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #000; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #ef4444; 
-            border-radius: 4px;
-        }
-
-        /* Glass Navbar */
-        .glass-nav {
-            background: rgba(9, 9, 11, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* Hero Arka Planı (Şehir Görseli veya Koyu Gradient) */
-        .hero-section {
-            background: linear-gradient(to bottom, rgba(9,9,11,0.3) 0%, rgba(9,9,11,1) 100%), 
-                        url('https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
-            background-size: cover;
-            background-attachment: fixed; /* Parallax efekti için */
-        }
-
-        /* Özellik Kartları */
-        .feature-card {
-            background: rgba(39, 39, 42, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 1rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-            transform: translateX(-100%);
-            transition: 0.5s;
-        }
-
-        .feature-card:hover::before {
-            transform: translateX(100%);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(239, 68, 68, 0.15);
-            border-color: rgba(239, 68, 68, 0.3);
-        }
-
-        .feature-icon-wrapper {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(0,0,0,0));
-            box-shadow: inset 0 0 20px rgba(239, 68, 68, 0.1);
-        }
-
-        /* Discord Butonu Parlama Animasyonu */
-        .glow-btn {
-            position: relative;
-        }
-        .glow-btn::after {
-            content: '';
-            position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(45deg, #ef4444, #b91c1c, #ef4444);
-            z-index: -1;
-            filter: blur(10px);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-            border-radius: inherit;
-        }
-        .glow-btn:hover::after {
-            opacity: 1;
-        }
+        body { background-color: #0f0518; color: #fff; overflow-x: hidden; }
         
-        /* Sürekli hareket eden şekiller */
-        .floating-shape {
-            animation: float-shape 6s ease-in-out infinite;
+        /* Özelleştirilmiş Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f0518; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #9d00ff, #ff007f); border-radius: 10px; }
+
+        /* Synthwave Grid Arka Plan */
+        .synthwave-grid {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 50vh;
+            background: 
+                linear-gradient(transparent 65%, rgba(157, 0, 255, 0.4) 100%),
+                linear-gradient(90deg, rgba(255, 0, 127, 0.2) 1px, transparent 1px),
+                linear-gradient(rgba(255, 0, 127, 0.2) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            transform: perspective(500px) rotateX(60deg) translateY(100px) translateZ(-200px);
+            animation: grid-move 5s linear infinite; z-index: 0; pointer-events: none;
         }
-        @keyframes float-shape {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
+        @keyframes grid-move {
+            0% { background-position: 0 0, 0 0, 0 0; }
+            100% { background-position: 0 0, 0 40px, 0 40px; }
         }
+
+        /* Neon Glow Efektleri */
+        .neon-text { text-shadow: 0 0 10px #9d00ff, 0 0 20px #9d00ff, 0 0 40px #ff007f; }
+        .neon-box { box-shadow: 0 0 15px rgba(157, 0, 255, 0.3), inset 0 0 10px rgba(255, 0, 127, 0.2); }
+        
+        /* Cam Tasarım (Glassmorphism) */
+        .glass { background: rgba(20, 5, 35, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(157, 0, 255, 0.2); }
+
+        /* Yükleme Ekranı */
+        .loader-bg { position: fixed; inset: 0; background: #0f0518; z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .loader-sun { width: 100px; height: 100px; background: linear-gradient(to bottom, #ff007f, #ff7e5f); border-radius: 50%; box-shadow: 0 0 50px #ff007f; animation: pulse 2s infinite alternate; margin-bottom: 20px;}
+        @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.1); box-shadow: 0 0 80px #ff7e5f; } }
+        
+        /* Özel İmleç */
+        @media (pointer: fine) {
+            body { cursor: none; }
+            .cursor-dot { position: fixed; width: 6px; height: 6px; background: #fff; border-radius: 50%; z-index: 100000; pointer-events: none; transform: translate(-50%, -50%); box-shadow: 0 0 10px #fff; }
+            .cursor-outline { position: fixed; width: 40px; height: 40px; border: 2px solid #ff007f; border-radius: 50%; z-index: 100000; pointer-events: none; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background-color 0.2s; box-shadow: 0 0 15px rgba(255, 0, 127, 0.5); }
+        }
+        @media (pointer: coarse) { .cursor-dot, .cursor-outline { display: none !important; } }
+
+        /* Form Elemanları */
+        .custom-input { width: 100%; background: rgba(15, 5, 24, 0.7); border: 1px solid rgba(157, 0, 255, 0.4); border-radius: 0.5rem; padding: 1rem; color: white; outline: none; transition: all 0.3s; }
+        .custom-input:focus { border-color: #ff007f; box-shadow: 0 0 15px rgba(255, 0, 127, 0.4); transform: translateY(-2px); }
     </style>
 </head>
-<body>
+<body class="bg-darkBg antialiased selection:bg-neonPink selection:text-white">
+
+    <!-- Yükleme Ekranı -->
+    <div class="loader-bg">
+        <div class="loader-sun"></div>
+        <h1 class="font-logo text-5xl text-white neon-text tracking-widest">ParadiseV</h1>
+        <div class="w-64 h-2 bg-purple-900/50 mt-8 rounded-full overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-neonPurple to-neonPink w-0 loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Özel İmleç -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
 
     <!-- Navbar -->
-    <nav class="glass-nav fixed w-full z-50 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer logo-anim">
-                    <i class="fa-solid fa-skull text-red-500 text-3xl"></i>
-                    <span class="font-black text-2xl tracking-widest text-white">LS<span class="text-red-500">RP</span></span>
-                </div>
-                <!-- Menü (Masaüstü) -->
-                <div class="hidden md:block nav-links">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Ana Sayfa</a>
-                        <a href="#features" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Özellikler</a>
-                        <a href="#rules" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Kurallar</a>
-                        <a href="basvuru.html" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-red-500/30 transition-all transform hover:scale-105">
-                            Whitelist Başvurusu
-                        </a>
-                    </div>
-                </div>
-                <!-- Mobil Menü Butonu (Süs olarak eklendi) -->
-                <div class="md:hidden flex items-center">
-                    <button class="text-gray-300 hover:text-white focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group interactive">
+                <i class="fa-solid fa-palm-tree text-neonPink text-3xl group-hover:rotate-12 transition-transform duration-300"></i>
+                <span class="font-logo text-3xl text-white tracking-widest drop-shadow-[0_0_10px_rgba(255,0,127,0.8)]">ParadiseV</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8 items-center nav-links">
+                <a href="#features" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Sistemler</a>
+                <a href="#hardware" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Altyapı</a>
+                <a href="#apply" class="relative px-6 py-2 bg-transparent border-2 border-neonPurple text-white font-bold rounded-full overflow-hidden interactive hover:shadow-[0_0_20px_rgba(157,0,255,0.6)] transition-all group">
+                    <span class="relative z-10 group-hover:text-white">HEMEN BAŞVUR</span>
+                    <div class="absolute inset-0 h-full w-0 bg-gradient-to-r from-neonPurple to-neonPink transition-all duration-300 ease-out group-hover:w-full z-0"></div>
+                </a>
+            </div>
+
+            <!-- Mobil Menü Butonu -->
+            <button id="mobile-menu-btn" class="md:hidden text-white interactive">
+                <i class="fa-solid fa-bars text-3xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden glass absolute top-20 left-0 w-full border-b border-neonPurple/30 shadow-2xl z-40">
+            <div class="flex flex-col px-6 py-8 space-y-6 text-center">
+                <a href="#features" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Sistemler</a>
+                <a href="#hardware" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Altyapı</a>
+                <a href="#apply" class="mobile-link px-6 py-4 bg-gradient-to-r from-neonPurple to-neonPink text-white font-bold rounded-full mt-4">BAŞVURU YAP</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero (Ana Karşılama) Bölümü -->
-    <section class="hero-section min-h-screen flex items-center justify-center relative pt-20 overflow-hidden">
-        <div class="absolute inset-0 bg-black/50 z-0"></div> <!-- Karartma katmanı -->
+    <!-- Hero Bölümü -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden" id="hero">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(157,0,255,0.15),transparent_70%)] z-0"></div>
+        <div class="synthwave-grid"></div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div class="inline-block mb-4 px-4 py-1 rounded-full border border-red-500/30 bg-red-500/10 text-red-400 font-semibold text-sm tracking-widest uppercase hero-badge opacity-0">
-                Los Santos'un En Gerçekçi Deneyimi
-            </div>
+        <div class="max-w-5xl mx-auto px-4 relative z-10 text-center flex flex-col items-center pt-20">
+            <div class="w-32 h-32 md:w-48 md:h-48 bg-gradient-to-b from-sunsetOrange to-neonPink rounded-full absolute -top-10 md:-top-20 -z-10 shadow-[0_0_100px_rgba(255,126,95,0.8)] hero-sun"></div>
             
-            <h1 class="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tight hero-title opacity-0">
-                Hikayeni <br/>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-800">Sokaklarda Yaz</span>
-            </h1>
+            <h1 class="font-logo text-7xl md:text-9xl text-white tracking-widest neon-text hero-anim mt-10">Paradise</h1>
+            <p class="text-xl md:text-2xl text-gray-300 font-light mt-6 hero-anim tracking-wider uppercase">Sınırsız Rol, Kusursuz Deneyim</p>
             
-            <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 hero-desc opacity-0 font-light">
-                Gerçekçi ekonomi, özel MLO'lar ve tavizsiz Hard RP kuralları. Burada yaptığın her seçimin bir bedeli var. Hayatta kalmaya hazır mısın?
-            </p>
-            
-            <div class="flex flex-col sm:flex-row justify-center gap-4 hero-buttons opacity-0">
-                <a href="#features" class="px-8 py-4 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition transform hover:-translate-y-1">
-                    Sunucuyu Keşfet <i class="fa-solid fa-arrow-down ml-2"></i>
-                </a>
-                <a href="https://discord.gg/seninlinkin" target="_blank" class="glow-btn px-8 py-4 bg-[#5865F2] text-white font-bold rounded-lg transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-discord text-xl"></i> Discord'a Katıl
-                </a>
-            </div>
-        </div>
-
-        <!-- Dekoratif Kayan Şekil -->
-        <div class="absolute bottom-10 left-10 text-red-500/20 text-9xl z-0 floating-shape hidden lg:block">
-            <i class="fa-solid fa-city"></i>
-        </div>
-    </section>
-
-    <!-- İstatistikler Bölümü (Scroll ile sayılar artar) -->
-    <section class="py-12 bg-zinc-900 border-y border-white/5 relative z-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center stat-container">
-                <div class="stat-item">
-                    <div class="text-4xl font-black text-red-500 mb-2 counter" data-target="128">0</div>
-                    <div class="text-sm text-gray-400 font-semibold tracking-wider uppercase">Aktif Oyuncu</div>
-                </div>
-                <div class="stat-item">
-                    <div class="text-4xl font-black text-white mb-2 counter" data-target="45">0</div>
-                    <div class="text-sm text-gray-400 font-semibold tracking-wider uppercase">Özel Script</div>
-                </div>
-                <div class="stat-item">
-                    <div class="text-4xl font-black text-white mb-2 counter" data-target="2500">0</div>
-                    <div class="text-sm text-gray-400 font-semibold tracking-wider uppercase">Kayıtlı Karakter</div>
-                </div>
-                <div class="stat-item">
-                    <div class="text-4xl font-black text-red-500 mb-2">7/24</div>
-                    <div class="text-sm text-gray-400 font-semibold tracking-wider uppercase">Kesintisiz Aktiflik</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Özellikler Bölümü (Senin ilgi alanlarına göre) -->
-    <section id="features" class="py-24 bg-black relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 section-header">
-                <h2 class="text-red-500 font-bold tracking-widest text-sm uppercase mb-2">Neden Biz?</h2>
-                <h3 class="text-4xl md:text-5xl font-black text-white">Sınırları Zorlayan Sistemler</h3>
-                <div class="w-24 h-1 bg-red-600 mx-auto mt-6 rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Kart 1: MLO & Harita -->
-                <div class="feature-card p-8">
-                    <div class="w-16 h-16 rounded-2xl feature-icon-wrapper flex items-center justify-center mb-6 text-red-500 text-3xl">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Özel Ymap & MLO'lar</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Standart Los Santos'u unutun. Çeteler, mekanlar ve PD için özel olarak tasarlanmış, optimize edilmiş yüksek FPS garantili MLO iç mekanlar.
-                    </p>
-                </div>
-
-                <!-- Kart 2: Ekonomi -->
-                <div class="feature-card p-8 mt-0 lg:mt-8"> <!-- Ortadaki kartı biraz aşağı itmek için -->
-                    <div class="w-16 h-16 rounded-2xl feature-icon-wrapper flex items-center justify-center mb-6 text-red-500 text-3xl">
-                        <i class="fa-solid fa-sack-dollar"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Zorlu Hard Ekonomi</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Milyon dolarların havada uçuştuğu sunuculardan değiliz. Bir araba almak için gerçekten emek vermeli ve ticaret ağınızı kurmalısınız.
-                    </p>
-                </div>
-
-                <!-- Kart 3: Script & Optimizasyon -->
-                <div class="feature-card p-8">
-                    <div class="w-16 h-16 rounded-2xl feature-icon-wrapper flex items-center justify-center mb-6 text-red-500 text-3xl">
-                        <i class="fa-solid fa-microchip"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Gelişmiş Scriptler</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Kendi yazdığımız legal/illegal meslek scriptleri, gelişmiş envanter ve kıyafet paketleri (Clothing Packs) ile lag sorunları olmadan akıcı rol deneyimi.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Aksiyon Çağrısı (Başvuru) Bölümü -->
-    <section class="py-24 relative overflow-hidden">
-        <!-- Arka plan animasyonlu gradient -->
-        <div class="absolute inset-0 bg-gradient-to-br from-red-900/40 to-black z-0"></div>
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 z-0"></div>
-
-        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center cta-content">
-            <i class="fa-solid fa-passport text-6xl text-red-500 mb-6"></i>
-            <h2 class="text-4xl md:text-5xl font-black mb-6">Şehre Giriş Biletini Al</h2>
-            <p class="text-gray-300 text-lg mb-10">
-                Whitelist başvuruları şu an açık. Sadece kaliteli rol yapabilen, karakter hikayesine sadık kalacak oyuncuları arıyoruz. Şansını denemeye var mısın?
-            </p>
-            <a href="basvuru.html" class="inline-block px-10 py-5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-lg shadow-[0_0_40px_rgba(239,68,68,0.4)] transition-all transform hover:scale-105 hover:-translate-y-2">
-                HEMEN BAŞVURU YAP
+            <a href="#apply" class="mt-12 w-16 h-16 rounded-full border-2 border-neonPink/50 flex items-center justify-center text-neonPink hover:bg-neonPink hover:text-white transition-all duration-300 interactive hero-anim shadow-[0_0_20px_rgba(255,0,127,0.4)] animate-bounce">
+                <i class="fa-solid fa-arrow-down text-2xl"></i>
             </a>
         </div>
     </section>
 
+    <!-- Sistemler -->
+    <section id="features" class="py-24 relative z-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 section-title">
+                <h2 class="text-neonPink font-bold tracking-widest text-sm uppercase mb-2">Vice City Ruhunda</h2>
+                <h3 class="text-4xl md:text-5xl font-black text-white uppercase neon-text">Özel Sistemler</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Kart 1 -->
+                <div class="glass p-8 rounded-2xl feature-card interactive hover:-translate-y-4 transition-transform duration-500">
+                    <div class="w-16 h-16 rounded-full bg-neonPurple/20 flex items-center justify-center text-neonPurple text-3xl mb-6 shadow-[0_0_15px_rgba(157,0,255,0.5)]">
+                        <i class="fa-solid fa-shirt"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-3">Gelişmiş Clothing Packs</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Özenle optimize edilmiş, karakterinizi tam istediğiniz tarzda yaratmanıza olanak sağlayan genişletilmiş 3D kıyafet paketleri.</p>
+                </div>
+                
+                <!-- Kart 2 -->
+                <div class="glass p-8 rounded-2xl feature-card interactive hover:-translate-y-4 transition-transform duration-500 md:translate-y-8">
+                    <div class="w-16 h-16 rounded-full bg-neonPink/20 flex items-center justify-center text-neonPink text-3xl mb-6 shadow-[0_0_15px_rgba(255,0,127,0.5)]">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-3">Özel MLO Tasarımları</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Sıradan binaları unutun. FPS düşüşü yaşatmayan, çetelere ve işletmelere özel tasarlanmış detaylı gizli iç mekanlar.</p>
+                </div>
+
+                <!-- Kart 3 -->
+                <div class="glass p-8 rounded-2xl feature-card interactive hover:-translate-y-4 transition-transform duration-500">
+                    <div class="w-16 h-16 rounded-full bg-sunsetOrange/20 flex items-center justify-center text-sunsetOrange text-3xl mb-6 shadow-[0_0_15px_rgba(255,126,95,0.5)]">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-3">Hard RP Ekonomisi</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Oyuncuların yönettiği arz-talep dengesine dayalı, emeğin karşılığını veren tavizsiz ve gerçekçi piyasa sistemi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Altyapı / Donanım -->
+    <section id="hardware" class="py-24 bg-gradient-to-b from-darkBg to-[#11041c] relative z-20 border-t border-neonPurple/20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 section-title">
+                <h3 class="text-4xl md:text-5xl font-black text-white uppercase">Sıfır Desync, <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonPurple to-neonPink">Maksimum Akıcılık</span></h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="glass p-8 rounded-2xl hw-card flex items-center gap-6 interactive">
+                    <i class="fa-solid fa-memory text-5xl text-neonPurple drop-shadow-[0_0_15px_rgba(157,0,255,0.8)]"></i>
+                    <div>
+                        <h4 class="text-2xl font-bold text-white mb-2">7200MHz DDR5 Konfigürasyonu</h4>
+                        <p class="text-gray-400 text-sm">Sunucu bazlı senkronizasyon kayıplarını önlemek için yüksek frekansa ayarlanmış bellek altyapısıyla anlık veri aktarımı.</p>
+                    </div>
+                </div>
+                
+                <div class="glass p-8 rounded-2xl hw-card flex items-center gap-6 interactive">
+                    <i class="fa-solid fa-hard-drive text-5xl text-neonPink drop-shadow-[0_0_15px_rgba(255,0,127,0.8)]"></i>
+                    <div>
+                        <h4 class="text-2xl font-bold text-white mb-2">NVMe M.2 Termal Koruma</h4>
+                        <p class="text-gray-400 text-sm">Ağır modların ve araçların anında yüklenmesi için ısınma sorunu (Throttling) yaşatmayan yüksek okuma/yazma hızlı depolama.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Entegre Başvuru Formu -->
+    <section id="apply" class="py-24 relative z-20 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(255,0,127,0.1),transparent_60%)]"></div>
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            
+            <div class="text-center mb-12 apply-header">
+                <i class="fa-solid fa-passport text-5xl text-neonPink mb-4 drop-shadow-[0_0_15px_rgba(255,0,127,0.8)]"></i>
+                <h2 class="text-4xl font-black text-white uppercase neon-text">Şehre Biletini Al</h2>
+                <p class="text-gray-400 mt-3">Sadece kaliteli hikayeler arıyoruz. Formu eksiksiz doldur, Paradise'a adım at.</p>
+            </div>
+
+            <!-- Form Kartı -->
+            <div class="glass rounded-3xl p-8 md:p-12 shadow-[0_0_40px_rgba(157,0,255,0.15)] apply-form-container relative overflow-hidden">
+                
+                <!-- Başarı Katmanı (Başlangıçta Gizli) -->
+                <div id="successOverlay" class="absolute inset-0 bg-darkBg/95 backdrop-blur-md z-50 hidden flex-col items-center justify-center text-center opacity-0">
+                    <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(74,222,128,0.5)] scale-0 success-icon">
+                        <i class="fa-solid fa-check text-5xl text-white"></i>
+                    </div>
+                    <h3 class="text-3xl font-black text-white mb-2 translate-y-4 success-text opacity-0">Başvurun Alındı!</h3>
+                    <p class="text-gray-400 translate-y-4 success-text opacity-0">Discord üzerinden bilgilendirme yapılacaktır.</p>
+                </div>
+
+                <form id="whitelistForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm text-neonPurple font-bold mb-2">Discord ID</label>
+                            <input type="text" class="custom-input" placeholder="user#1234" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-neonPurple font-bold mb-2">Gerçek Yaş</label>
+                            <input type="number" class="custom-input" placeholder="18+" min="16" required>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm text-neonPink font-bold mb-2">Karakter Adı Soyadı</label>
+                            <input type="text" class="custom-input" placeholder="Örn: Tommy Vercetti" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-neonPink font-bold mb-2">FiveM Saatiniz</label>
+                            <input type="number" class="custom-input" placeholder="Saati giriniz" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-sunsetOrange font-bold mb-2">Karakterinizin Hikayesi ve Amacı</label>
+                        <textarea class="custom-input resize-none h-32" placeholder="Paradise sokaklarındaki geçmişini anlat..." required></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-sunsetOrange font-bold mb-2">Roleplay Senaryosu (Fear RP)</label>
+                        <textarea class="custom-input resize-none h-24" placeholder="Issız bir sokakta 3 silahlı kişi önünü kesti. Tepkin ne olur?" required></textarea>
+                    </div>
+
+                    <div class="flex items-center gap-3 pt-4">
+                        <input type="checkbox" id="rules" class="w-5 h-5 accent-neonPink cursor-pointer" required>
+                        <label for="rules" class="text-sm text-gray-400 cursor-pointer hover:text-white transition">Hard RP kurallarını ve ağır ekonomiyi kabul ediyorum.</label>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="w-full py-4 bg-gradient-to-r from-neonPurple to-neonPink text-white font-black rounded-xl hover:shadow-[0_0_30px_rgba(255,0,127,0.6)] transition-all duration-300 flex items-center justify-center gap-3 group">
+                        <span>BAŞVURUYU GÖNDER</span>
+                        <i class="fa-solid fa-paper-plane group-hover:translate-x-2 transition-transform"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="bg-black py-8 border-t border-white/10 text-center">
-        <p class="text-gray-500 text-sm">
-            &copy; 2026 Los Santos Hard RP. Tüm hakları saklıdır.<br>
-            <span class="text-xs mt-2 inline-block">FiveM veya Rockstar Games ile resmi bir bağlantısı yoktur.</span>
-        </p>
+    <footer class="bg-[#0a0312] py-12 border-t border-neonPurple/30 text-center relative z-20">
+        <h2 class="font-logo text-4xl text-white mb-6">ParadiseV</h2>
+        <p class="text-gray-600 text-sm">&copy; 2026 Paradise Roleplay. Los Santos'un yeni adresi.</p>
     </footer>
 
-    <!-- Animasyon Kodları -->
     <script>
-        // GSAP ScrollTrigger'ı kaydet
         gsap.registerPlugin(ScrollTrigger);
 
-        // Sayfa Yüklendiğinde Çalışacak Hero Animasyonları
-        const tl = gsap.timeline();
+        // --- PRELOADER ---
+        window.addEventListener('load', () => {
+            const tlLoader = gsap.timeline();
+            tlLoader.to(".loader-bar", { width: "100%", duration: 1.5, ease: "power3.inOut" })
+            .to(".loader-bg", { y: "-100%", duration: 0.8, ease: "power4.inOut", onComplete: () => {
+                document.querySelector('.loader-bg').style.display = 'none';
+                initAnimations();
+            }}, "+=0.2");
+        });
 
-        tl.to(".logo-anim", { opacity: 1, x: 0, duration: 1, ease: "power3.out" })
-          .fromTo(".nav-links a", { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "back.out(1.7)" }, "-=0.5")
-          .to(".hero-badge", { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.2")
-          .to(".hero-title", { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, "-=0.4")
-          .to(".hero-desc", { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.5")
-          .to(".hero-buttons", { y: 0, opacity: 1, duration: 0.6, ease: "back.out(1.5)" }, "-=0.4");
+        // --- ANA ANİMASYONLAR ---
+        function initAnimations() {
+            // Navbar
+            gsap.fromTo(".nav-links a", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "back.out(1.5)" });
+            
+            // Hero
+            gsap.fromTo(".hero-sun", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.5, ease: "elastic.out(1, 0.5)" });
+            gsap.fromTo(".hero-anim", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: "power3.out" }, "-=1");
 
-        // --- Scroll Animasyonları ---
+            // Scroll Animasyonları
+            gsap.utils.toArray('.section-title').forEach(title => {
+                gsap.fromTo(title, { opacity: 0, y: 50 }, { scrollTrigger: { trigger: title, start: "top 80%" }, opacity: 1, y: 0, duration: 1, ease: "back.out(1.5)" });
+            });
 
-        // Navbar Arka Planı (Scroll yapınca belirginleşir)
+            gsap.fromTo(".feature-card", { opacity: 0, y: 100, rotationX: -15 }, { scrollTrigger: { trigger: "#features", start: "top 75%" }, opacity: 1, y: 0, rotationX: 0, duration: 1, stagger: 0.2, ease: "power4.out" });
+            
+            gsap.fromTo(".hw-card", { opacity: 0, scale: 0.8 }, { scrollTrigger: { trigger: "#hardware", start: "top 80%" }, opacity: 1, scale: 1, duration: 0.8, stagger: 0.2, ease: "back.out(1.7)" });
+
+            gsap.fromTo(".apply-header, .apply-form-container", { opacity: 0, y: 50 }, { scrollTrigger: { trigger: "#apply", start: "top 75%" }, opacity: 1, y: 0, duration: 1, stagger: 0.3, ease: "power3.out" });
+        }
+
+        // --- MASAÜSTÜ ÖZEL İMLEÇ ---
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+
+            window.addEventListener('mousemove', (e) => {
+                cursorDot.style.left = `${e.clientX}px`; cursorDot.style.top = `${e.clientY}px`;
+                cursorOutline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 300, fill: "forwards" });
+            });
+
+            document.querySelectorAll('.interactive, a, button, input, textarea').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorOutline.style.width = '60px'; cursorOutline.style.height = '60px';
+                    cursorOutline.style.borderColor = '#9d00ff'; cursorOutline.style.backgroundColor = 'rgba(157, 0, 255, 0.1)';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.style.width = '40px'; cursorOutline.style.height = '40px';
+                    cursorOutline.style.borderColor = '#ff007f'; cursorOutline.style.backgroundColor = 'transparent';
+                });
+            });
+        }
+
+        // --- MOBİL MENÜ ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => menu.classList.add('hidden')));
+
+        // --- FORM GÖNDERİM SİMÜLASYONU VE ANİMASYONU ---
+        document.getElementById('whitelistForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Sayfa yenilemesini engelle
+            
+            const btn = document.getElementById('submitBtn');
+            const overlay = document.getElementById('successOverlay');
+            
+            // Buton yükleniyor efekti
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> İşleniyor...';
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+            
+            // 1.5 saniye sonra başarı ekranını göster
+            setTimeout(() => {
+                overlay.classList.remove('hidden');
+                overlay.classList.add('flex');
+                
+                // GSAP Başarı Animasyonu
+                const tl = gsap.timeline();
+                tl.to(overlay, { opacity: 1, duration: 0.3 })
+                  .to(".success-icon", { scale: 1, rotation: 360, duration: 0.6, ease: "back.out(2)" })
+                  .to(".success-text", { opacity: 1, y: 0, duration: 0.4, stagger: 0.1, ease: "power2.out" });
+
+                // 4 Saniye sonra formu sıfırla ve kapat
+                setTimeout(() => {
+                    gsap.to(overlay, { opacity: 0, duration: 0.5, onComplete: () => {
+                        overlay.classList.add('hidden');
+                        overlay.classList.remove('flex');
+                        document.getElementById('whitelistForm').reset();
+                        btn.innerHTML = '<span>BAŞVURUYU GÖNDER</span><i class="fa-solid fa-paper-plane"></i>';
+                        btn.classList.remove('opacity-75', 'cursor-not-allowed');
+                        // Fare imlecini geri döndür
+                        gsap.set([".success-icon", ".success-text"], { clearProps: "all" });
+                    }});
+                }, 4000);
+            }, 1500);
+        });
+
+        // --- NAVBAR SCROLL EFEKTİ ---
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(9, 9, 11, 0.95)';
-                nav.style.boxShadow = '0 10px 30px -10px rgba(0,0,0,0.5)';
+            if(window.scrollY > 50) {
+                nav.classList.add('glass');
             } else {
-                nav.style.background = 'rgba(9, 9, 11, 0.7)';
-                nav.style.boxShadow = 'none';
+                nav.classList.remove('glass');
             }
-        });
-
-        // Özellik Kartları Scroll Animasyonu (Stagger efektli)
-        gsap.from(".feature-card", {
-            scrollTrigger: {
-                trigger: "#features",
-                start: "top 75%", // Bölüm görünürlüğün %75'ine geldiğinde başla
-            },
-            y: 100,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.2, // Kartlar sırayla gelsin
-            ease: "back.out(1.2)"
-        });
-
-        // Bölüm Başlıkları Animasyonu
-        gsap.from(".section-header", {
-            scrollTrigger: {
-                trigger: "#features",
-                start: "top 85%",
-            },
-            scale: 0.8,
-            opacity: 0,
-            duration: 0.6,
-            ease: "power2.out"
-        });
-
-        // CTA (Başvuru) Kısmı Animasyonu
-        gsap.from(".cta-content", {
-            scrollTrigger: {
-                trigger: ".cta-content",
-                start: "top 80%",
-            },
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out"
-        });
-
-        // İstatistik Numarası Saydırma Animasyonu
-        const counters = document.querySelectorAll('.counter');
-        
-        ScrollTrigger.create({
-            trigger: ".stat-container",
-            start: "top 85%",
-            onEnter: () => {
-                counters.forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
-                    // Gsap ile sayıları animasyonlu arttırma
-                    gsap.to(counter, {
-                        innerHTML: target,
-                        duration: 2,
-                        snap: { innerHTML: 1 }, // Küsuratsız artması için
-                        ease: "power1.out"
-                    });
-                });
-            },
-            once: true // Sadece bir kere çalışsın
         });
     </script>
 </body>
