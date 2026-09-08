@@ -35,7 +35,8 @@
         ::-webkit-scrollbar-track { background: #0f0518; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #9d00ff, #ff007f); border-radius: 10px; }
 
-        .glass, .feature-card, .accordion-item, .particle, .gallery-track, .stat-card {
+        /* Donanım Hızlandırma */
+        .glass, .feature-card, .team-card, .social-btn, .particle {
             will-change: transform, opacity;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
@@ -54,19 +55,20 @@
         }
         @keyframes grid-move { 0% { background-position: 0 0, 0 0, 0 0; } 100% { background-position: 0 0, 0 40px, 0 40px; } }
 
-        /* Parçacık Efekti */
+        /* Parçacıklar */
         #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
         .particle { position: absolute; border-radius: 50%; filter: blur(3px); animation: floatUp linear infinite; }
         @keyframes floatUp { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 50% { opacity: 1; scale: 1; } 100% { transform: translateY(-10vh) scale(0); opacity: 0; } }
 
         .neon-text { text-shadow: 0 0 10px #9d00ff, 0 0 20px #9d00ff, 0 0 40px #ff007f; }
         .glass { background: rgba(20, 5, 35, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(157, 0, 255, 0.2); }
-        .glass-btn { background: rgba(88, 101, 242, 0.1); backdrop-filter: blur(5px); border: 1px solid #5865F2; }
 
+        /* Yükleme Ekranı */
         .loader-bg { position: fixed; inset: 0; background: #0f0518; z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .loader-sun { width: 100px; height: 100px; background: linear-gradient(to bottom, #ff007f, #ff7e5f); border-radius: 50%; box-shadow: 0 0 50px #ff007f; animation: pulse 2s infinite alternate; margin-bottom: 20px;}
         @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.1); box-shadow: 0 0 80px #ff7e5f; } }
         
+        /* Özel İmleç */
         @media (pointer: fine) {
             body { cursor: none; }
             .cursor-dot { position: fixed; width: 6px; height: 6px; background: #fff; border-radius: 50%; z-index: 100000; pointer-events: none; transform: translate(-50%, -50%); box-shadow: 0 0 10px #fff; }
@@ -74,46 +76,46 @@
         }
         @media (pointer: coarse) { .cursor-dot, .cursor-outline { display: none !important; } }
 
+        /* Marquee */
         .marquee-container { width: 100%; overflow: hidden; background: rgba(157, 0, 255, 0.2); border-top: 1px solid #9d00ff; border-bottom: 1px solid #ff007f; padding: 10px 0; position: relative; z-index: 20; box-shadow: 0 0 20px rgba(255, 0, 127, 0.3); }
         .marquee-content { display: flex; white-space: nowrap; animation: marquee 25s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .gallery-container { width: 100%; overflow: hidden; position: relative; padding: 20px 0; }
-        .gallery-track { display: flex; gap: 20px; width: max-content; animation: scrollGallery 40s linear infinite; }
-        .gallery-track:hover { animation-play-state: paused; }
-        @keyframes scrollGallery { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .gallery-img { width: 300px; height: 200px; object-fit: cover; border-radius: 10px; border: 2px solid rgba(157, 0, 255, 0.4); transition: all 0.3s; cursor: pointer; filter: grayscale(50%); }
-        .gallery-img:hover { filter: grayscale(0%); transform: scale(1.05); border-color: #ff007f; box-shadow: 0 0 20px rgba(255, 0, 127, 0.5); z-index: 10; }
-
+        /* Form & UI Elemanları */
         .custom-input { width: 100%; background: rgba(15, 5, 24, 0.7); border: 1px solid rgba(157, 0, 255, 0.4); border-radius: 0.5rem; padding: 1rem; color: white; outline: none; transition: all 0.3s; }
         .custom-input:focus { border-color: #ff007f; box-shadow: 0 0 15px rgba(255, 0, 127, 0.4); transform: translateY(-2px); }
-
-        .accordion-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s ease; }
-        .accordion-content > div { overflow: hidden; }
-        .accordion-item.active .accordion-content { grid-template-rows: 1fr; }
-        .accordion-item.active .acc-icon { transform: rotate(180deg); color: #ff007f; }
 
         .server-widget { position: fixed; bottom: 20px; right: 20px; z-index: 9998; transition: transform 0.3s; }
         .server-widget:hover { transform: translateY(-5px); }
         .music-player { position: fixed; bottom: 20px; left: 20px; z-index: 9998; transition: transform 0.3s; }
         .music-player:hover { transform: translateY(-5px); }
+        
         .status-dot { width: 10px; height: 10px; border-radius: 50%; background-color: #22c55e; box-shadow: 0 0 10px #22c55e; animation: blink 1.5s infinite; }
         @keyframes blink { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
         
         .equalizer { display: flex; gap: 3px; height: 15px; align-items: flex-end; }
         .eq-bar { width: 4px; background-color: #ff007f; border-radius: 2px; animation: eqAnim 0.5s infinite alternate ease-in-out; }
-        .eq-bar:nth-child(2) { animation-delay: 0.1s; }
-        .eq-bar:nth-child(3) { animation-delay: 0.2s; }
-        .eq-bar:nth-child(4) { animation-delay: 0.3s; }
+        .eq-bar:nth-child(2) { animation-delay: 0.1s; } .eq-bar:nth-child(3) { animation-delay: 0.2s; } .eq-bar:nth-child(4) { animation-delay: 0.3s; }
         @keyframes eqAnim { 0% { height: 3px; } 100% { height: 15px; } }
         .music-paused .eq-bar { animation-play-state: paused; height: 3px; }
+
+        /* Sosyal Medya Butonları */
+        .social-btn { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .social-btn:hover { transform: translateY(-10px) scale(1.05); }
+        .discord-btn:hover { background: #5865F2; box-shadow: 0 0 30px #5865F2; border-color: #5865F2; }
+        .youtube-btn:hover { background: #FF0000; box-shadow: 0 0 30px #FF0000; border-color: #FF0000; }
+        .instagram-btn:hover { background: #E1306C; box-shadow: 0 0 30px #E1306C; border-color: #E1306C; }
+        .x-btn:hover { background: #ffffff; color: #000; box-shadow: 0 0 30px #ffffff; border-color: #ffffff; }
+
+        /* Form Ayracı */
+        .form-section-title { position: relative; padding-bottom: 10px; margin-bottom: 20px; border-bottom: 1px solid rgba(255, 0, 127, 0.3); }
+        .form-section-title::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 50px; height: 2px; background: #ff007f; }
     </style>
 </head>
 <body class="bg-darkBg antialiased selection:bg-neonPink selection:text-white">
 
     <div id="particles"></div>
 
-    <!-- Müzik Çalar -->
     <audio id="bg-music" loop>
         <source src="https://assets.mixkit.co/music/preview/mixkit-synthwave-80s-164.mp3" type="audio/mpeg">
     </audio>
@@ -131,32 +133,22 @@
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
-    <!-- Müzik Oynatıcı Widget -->
+    <!-- Sabit Widget'lar -->
     <div class="music-player glass px-4 py-3 rounded-xl border border-neonPink/50 flex items-center gap-4 interactive cursor-pointer music-paused" id="musicToggleBtn">
         <div class="w-10 h-10 rounded-full bg-neonPink/20 flex items-center justify-center text-neonPink">
             <i class="fa-solid fa-play" id="musicIcon"></i>
         </div>
         <div class="flex flex-col">
             <span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Paradise FM</span>
-            <div class="equalizer mt-1">
-                <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-            </div>
+            <div class="equalizer mt-1"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
         </div>
     </div>
 
-    <!-- Sunucu Durum Widget'ı -->
     <div class="server-widget glass px-4 py-3 rounded-xl border border-neonPurple/50 flex items-center gap-4 interactive cursor-pointer">
-        <div class="flex flex-col">
-            <span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Durum</span>
-            <span class="text-white font-black">Aktif</span>
-        </div>
+        <div class="flex flex-col"><span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Durum</span><span class="text-white font-black">Aktif</span></div>
         <div class="h-8 w-px bg-white/20"></div>
-        <div class="flex flex-col items-end">
-            <span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Oyuncu</span>
-            <div class="flex items-center gap-2">
-                <span class="text-neonPink font-black">124</span><span class="text-gray-500 text-xs">/128</span>
-                <div class="status-dot"></div>
-            </div>
+        <div class="flex flex-col items-end"><span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Oyuncu</span>
+            <div class="flex items-center gap-2"><span class="text-neonPink font-black">124</span><span class="text-gray-500 text-xs">/128</span><div class="status-dot"></div></div>
         </div>
     </div>
 
@@ -170,31 +162,25 @@
             
             <div class="hidden md:flex space-x-6 items-center nav-links relative z-50">
                 <a href="#features" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Sistemler</a>
-                <a href="#stats" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">İstatistikler</a>
-                <a href="#gallery" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Galeri</a>
-                <a href="#faq" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Kurallar</a>
+                <a href="#zones" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Bölgeler</a>
+                <a href="#team" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Yönetim</a>
+                <a href="#social" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Sosyal</a>
                 
-                <button id="discordLoginBtn" class="glass-btn flex items-center gap-2 px-6 py-2 rounded-full text-white font-bold hover:bg-[#5865F2] hover:shadow-[0_0_20px_rgba(88,101,242,0.6)] transition-all duration-300 interactive group">
-                    <i class="fa-brands fa-discord text-xl group-hover:animate-bounce"></i>
-                    <span id="discordBtnText">Discord ile Bağlan</span>
-                </button>
-
-                <a href="#apply" class="relative px-6 py-2 bg-transparent border-2 border-neonPurple text-white font-bold rounded-full overflow-hidden interactive hover:shadow-[0_0_20px_rgba(157,0,255,0.6)] transition-all group">
+                <a href="#apply" class="relative px-6 py-2 bg-transparent border-2 border-neonPurple text-white font-bold rounded-full overflow-hidden interactive hover:shadow-[0_0_20px_rgba(157,0,255,0.6)] transition-all group ml-4">
                     <span class="relative z-10 group-hover:text-white">HEMEN BAŞVUR</span>
                     <div class="absolute inset-0 h-full w-0 bg-gradient-to-r from-neonPurple to-neonPink transition-all duration-300 ease-out group-hover:w-full z-0"></div>
                 </a>
             </div>
 
-            <button id="mobile-menu-btn" class="md:hidden text-white interactive">
-                <i class="fa-solid fa-bars text-3xl"></i>
-            </button>
+            <button id="mobile-menu-btn" class="md:hidden text-white interactive"><i class="fa-solid fa-bars text-3xl"></i></button>
         </div>
         
         <div id="mobile-menu" class="hidden md:hidden glass absolute top-20 left-0 w-full border-b border-neonPurple/30 shadow-2xl z-40">
             <div class="flex flex-col px-6 py-8 space-y-6 text-center">
                 <a href="#features" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Sistemler</a>
-                <a href="#stats" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">İstatistikler</a>
-                <a href="#faq" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Kurallar</a>
+                <a href="#zones" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Bölgeler</a>
+                <a href="#team" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Yönetim</a>
+                <a href="#social" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Sosyal</a>
                 <a href="#apply" class="mobile-link px-6 py-4 bg-gradient-to-r from-neonPurple to-neonPink text-white font-bold rounded-full mt-4">BAŞVURU YAP</a>
             </div>
         </div>
@@ -209,7 +195,7 @@
             <div class="w-32 h-32 md:w-48 md:h-48 bg-gradient-to-b from-sunsetOrange to-neonPink rounded-full absolute -top-10 md:-top-20 -z-10 shadow-[0_0_100px_rgba(255,126,95,0.8)] hero-sun"></div>
             
             <h1 class="font-logo text-7xl md:text-9xl text-white tracking-widest neon-text hero-anim mt-10">ParadiseV</h1>
-            <p class="text-xl md:text-2xl text-gray-300 font-light mt-6 hero-anim tracking-wider uppercase">Sınırsız Rol, Kusursuz Deneyim</p>
+            <p class="text-xl md:text-2xl text-gray-300 font-light mt-6 hero-anim tracking-wider uppercase">Los Santos'un Karanlık Yüzü</p>
             
             <a href="#apply" class="mt-12 w-16 h-16 rounded-full border-2 border-neonPink/50 flex items-center justify-center text-neonPink hover:bg-neonPink hover:text-white transition-all duration-300 interactive hero-anim shadow-[0_0_20px_rgba(255,0,127,0.4)] animate-bounce">
                 <i class="fa-solid fa-arrow-down text-2xl"></i>
@@ -220,171 +206,203 @@
     <!-- Marquee -->
     <div class="marquee-container">
         <div class="marquee-content text-sm md:text-base font-bold tracking-widest uppercase text-white">
-            <span class="mx-8"><i class="fa-solid fa-bolt text-sunsetOrange"></i> ParadiseV Whitelist Alımları Açıldı!</span>
-            <span class="mx-8"><i class="fa-solid fa-shield-halved text-neonPurple"></i> LSPD ve EMS Personel Alımları Devam Ediyor.</span>
-            <span class="mx-8"><i class="fa-solid fa-sack-dollar text-neonPink"></i> Zorlu Ekonomi Sistemiyle Gerçekçi Ticaret Başladı!</span>
-            <span class="mx-8"><i class="fa-solid fa-bolt text-sunsetOrange"></i> ParadiseV Whitelist Alımları Açıldı!</span>
-            <span class="mx-8"><i class="fa-solid fa-shield-halved text-neonPurple"></i> LSPD ve EMS Personel Alımları Devam Ediyor.</span>
-            <span class="mx-8"><i class="fa-solid fa-sack-dollar text-neonPink"></i> Zorlu Ekonomi Sistemiyle Gerçekçi Ticaret Başladı!</span>
+            <span class="mx-8"><i class="fa-solid fa-bolt text-sunsetOrange"></i> ParadiseV Hard RP Sezonu Başladı!</span>
+            <span class="mx-8"><i class="fa-solid fa-shield-halved text-neonPurple"></i> LSPD Memur Alımları Devam Ediyor.</span>
+            <span class="mx-8"><i class="fa-solid fa-sack-dollar text-neonPink"></i> Sıkı Ekonomi Devrede, Emeğin Karşılığını Al.</span>
+            <span class="mx-8"><i class="fa-solid fa-bolt text-sunsetOrange"></i> ParadiseV Hard RP Sezonu Başladı!</span>
+            <span class="mx-8"><i class="fa-solid fa-shield-halved text-neonPurple"></i> LSPD Memur Alımları Devam Ediyor.</span>
+            <span class="mx-8"><i class="fa-solid fa-sack-dollar text-neonPink"></i> Sıkı Ekonomi Devrede, Emeğin Karşılığını Al.</span>
         </div>
     </div>
 
-    <!-- Sistemler -->
+    <!-- Tanıtım / Sistemler -->
     <section id="features" class="py-24 relative z-20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20 section-title">
-                <h2 class="text-neonPink font-bold tracking-widest text-sm uppercase mb-2">Los Santos'un Karanlık Yüzü</h2>
-                <h3 class="text-4xl md:text-5xl font-black text-white uppercase neon-text">Özel Sistemler</h3>
+                <h2 class="text-neonPink font-bold tracking-widest text-sm uppercase mb-2">Tavizsiz Kalite</h2>
+                <h3 class="text-4xl md:text-5xl font-black text-white uppercase neon-text">Altyapı & Sistemler</h3>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass p-8 rounded-2xl feature-card interactive hover:-translate-y-4 transition-transform duration-500">
+                <div class="glass p-8 rounded-2xl feature-card interactive">
                     <div class="w-16 h-16 rounded-full bg-neonPurple/20 flex items-center justify-center text-neonPurple text-3xl mb-6 shadow-[0_0_15px_rgba(157,0,255,0.5)]">
                         <i class="fa-solid fa-shirt"></i>
                     </div>
-                    <h4 class="text-2xl font-bold text-white mb-3">Clothing Packs</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Özenle optimize edilmiş, karakterinizi tam istediğiniz tarzda yaratmanıza olanak sağlayan genişletilmiş 3D kıyafet paketleri.</p>
+                    <h4 class="text-2xl font-bold text-white mb-3">Gelişmiş Clothing Packs</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Özenle optimize edilmiş 3D giysi paketleri ile karakterinizi tam istediğiniz detayda yaratın.</p>
                 </div>
                 
-                <div class="glass p-8 rounded-2xl feature-card interactive hover:-translate-y-4 transition-transform duration-500 md:translate-y-8">
+                <div class="glass p-8 rounded-2xl feature-card interactive md:translate-y-8">
                     <div class="w-16 h-16 rounded-full bg-neonPink/20 flex items-center justify-center text-neonPink text-3xl mb-6 shadow-[0_0_15px_rgba(255,0,127,0.5)]">
-                        <i class="fa-solid fa-building"></i>
+                        <i class="fa-solid fa-microchip"></i>
                     </div>
-                    <h4 class="text-2xl font-bold text-white mb-3">Özel MLO Tasarımları</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">FPS düşüşü yaşatmayan, çetelere ve işletmelere özel tasarlanmış detaylı gizli iç mekanlar ve hood alanları.</p>
+                    <h4 class="text-2xl font-bold text-white mb-3">Sıfır Desync (7200MHz)</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">7200MHz RAM ve M.2 SSD destekli üst düzey makinemizle kaplama düşmesi veya senkronizasyon kaybı yaşamayın.</p>
                 </div>
 
-                <div class="glass p-8 rounded-2xl feature-card interactive hover:-translate-y-4 transition-transform duration-500">
+                <div class="glass p-8 rounded-2xl feature-card interactive">
                     <div class="w-16 h-16 rounded-full bg-sunsetOrange/20 flex items-center justify-center text-sunsetOrange text-3xl mb-6 shadow-[0_0_15px_rgba(255,126,95,0.5)]">
                         <i class="fa-solid fa-scale-balanced"></i>
                     </div>
-                    <h4 class="text-2xl font-bold text-white mb-3">Hard RP Ekonomisi</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Oyuncuların yönettiği arz-talep dengesine dayalı, emeğin karşılığını veren tavizsiz ve gerçekçi piyasa sistemi.</p>
+                    <h4 class="text-2xl font-bold text-white mb-3">Acımasız Ekonomi</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Oyuncuların yönettiği arz-talep dengesine dayalı, her bir doların değerli olduğu zorlu Hard RP piyasası.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- İstatistikler (Sayaçlar) -->
-    <section id="stats" class="py-16 bg-black/50 border-y border-neonPurple/20 relative z-20">
+    <!-- Bölgeler / Lokasyonlar -->
+    <section id="zones" class="py-24 relative z-20 bg-black/40 border-y border-neonPurple/20">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="stat-card">
-                    <div class="text-4xl md:text-5xl font-black text-neonPink mb-2 counter-value drop-shadow-[0_0_10px_rgba(255,0,127,0.5)]" data-target="128">0</div>
-                    <div class="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-widest">Aktif Oyuncu</div>
-                </div>
-                <div class="stat-card">
-                    <div class="text-4xl md:text-5xl font-black text-neonPurple mb-2 counter-value drop-shadow-[0_0_10px_rgba(157,0,255,0.5)]" data-target="3500">0</div>
-                    <div class="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-widest">Kayıtlı Karakter</div>
-                </div>
-                <div class="stat-card">
-                    <div class="text-4xl md:text-5xl font-black text-sunsetOrange mb-2 counter-value drop-shadow-[0_0_10px_rgba(255,126,95,0.5)]" data-target="45">0</div>
-                    <div class="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-widest">Özel Script</div>
-                </div>
-                <div class="stat-card">
-                    <div class="text-4xl md:text-5xl font-black text-white mb-2">7/24</div>
-                    <div class="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-widest">Kesintisiz Aktiflik</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Galeri -->
-    <section id="gallery" class="py-20 relative z-20 overflow-hidden">
-        <div class="text-center mb-10 section-title">
-            <h3 class="text-3xl md:text-4xl font-black text-white uppercase neon-text">Sokaklardan Kareler</h3>
-        </div>
-        <div class="gallery-container">
-            <div class="gallery-track interactive">
-                <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=2070" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1596788062973-19cb9c02d765?q=80&w=2070" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1587556930799-8dca6a1f466c?q=80&w=2072" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1627429188056-836fcd8b8949?q=80&w=1974" class="gallery-img">
-                <!-- Döngü Mimarisi -->
-                <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=2070" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1596788062973-19cb9c02d765?q=80&w=2070" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1587556930799-8dca6a1f466c?q=80&w=2072" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1627429188056-836fcd8b8949?q=80&w=1974" class="gallery-img">
-            </div>
-        </div>
-    </section>
-
-    <!-- SSS -->
-    <section id="faq" class="py-24 relative z-20 bg-black/30">
-        <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-16 section-title">
-                <h3 class="text-4xl md:text-5xl font-black text-white uppercase neon-text">Kurallar & S.S.S</h3>
+                <h3 class="text-4xl md:text-5xl font-black text-white uppercase neon-text">Şehrin Dinamikleri</h3>
+                <p class="text-gray-400 mt-2 text-sm">Özel MLO'lar ile donatılmış yaşam alanları.</p>
             </div>
-            <div class="space-y-4 accordion-container">
-                <div class="accordion-item glass rounded-xl overflow-hidden interactive border border-white/5">
-                    <div class="p-6 cursor-pointer flex justify-between items-center acc-header">
-                        <h4 class="font-bold text-white text-lg">Fear RP (Korku Rolü) nedir?</h4>
-                        <i class="fa-solid fa-chevron-down text-neonPurple transition-transform duration-300 acc-icon"></i>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Zone 1 -->
+                <div class="glass rounded-xl overflow-hidden group interactive zone-card relative h-64">
+                    <img src="https://images.unsplash.com/photo-1596788062973-19cb9c02d765?q=80&w=2070" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h4 class="text-2xl font-black text-blue-500 mb-1 drop-shadow-md">Adalet Sarayı & LSPD</h4>
+                        <p class="text-gray-300 text-sm">Şehrin güvenliğini sağlayan, özel nezarethane ve sorgu odalarıyla donatılmış departman.</p>
                     </div>
-                    <div class="accordion-content bg-black/50">
-                        <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed">
-                            Gerçek hayatta hayatınız tehlikedeyken göstereceğiniz korku ve tepkileri oyunda da göstermek zorundasınız.
-                        </div>
+                </div>
+                <!-- Zone 2 -->
+                <div class="glass rounded-xl overflow-hidden group interactive zone-card relative h-64">
+                    <img src="https://images.unsplash.com/photo-1627429188056-836fcd8b8949?q=80&w=1974" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h4 class="text-2xl font-black text-neonPink mb-1 drop-shadow-md">Karanlık Sokaklar (Hood)</h4>
+                        <p class="text-gray-300 text-sm">İllegal oluşumların kontrol ettiği, polisin bile girmeye çekindiği arka mahalleler.</p>
+                    </div>
+                </div>
+                <!-- Zone 3 -->
+                <div class="glass rounded-xl overflow-hidden group interactive zone-card relative h-64 md:col-span-2 lg:col-span-1">
+                    <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=2070" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h4 class="text-2xl font-black text-sunsetOrange mb-1 drop-shadow-md">Gece Hayatı & Mekanlar</h4>
+                        <p class="text-gray-300 text-sm">Sivillerin sosyalleştiği, arkasında gizli anlaşmaların yapıldığı özel tasarım kulüpler.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Başvuru Formu & Webhook -->
-    <section id="apply" class="py-24 relative z-20 overflow-hidden border-t border-neonPurple/20 bg-black/40">
+    <!-- Sosyal Medya Bölümü -->
+    <section id="social" class="py-24 relative z-20">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="mb-16 section-title">
+                <h2 class="text-neonPink font-bold tracking-widest text-sm uppercase mb-2">Aramıza Katıl</h2>
+                <h3 class="text-4xl md:text-5xl font-black text-white uppercase neon-text">Sosyal Ağlar</h3>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+                <a href="#" class="social-btn discord-btn glass w-24 h-24 md:w-32 md:h-32 rounded-2xl flex flex-col items-center justify-center gap-2 border-white/10 interactive">
+                    <i class="fa-brands fa-discord text-4xl md:text-5xl"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider">Discord</span>
+                </a>
+                <a href="#" class="social-btn youtube-btn glass w-24 h-24 md:w-32 md:h-32 rounded-2xl flex flex-col items-center justify-center gap-2 border-white/10 interactive">
+                    <i class="fa-brands fa-youtube text-4xl md:text-5xl"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider">YouTube</span>
+                </a>
+                <a href="#" class="social-btn instagram-btn glass w-24 h-24 md:w-32 md:h-32 rounded-2xl flex flex-col items-center justify-center gap-2 border-white/10 interactive">
+                    <i class="fa-brands fa-instagram text-4xl md:text-5xl"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider">Instagram</span>
+                </a>
+                <a href="#" class="social-btn x-btn glass w-24 h-24 md:w-32 md:h-32 rounded-2xl flex flex-col items-center justify-center gap-2 border-white/10 interactive">
+                    <i class="fa-brands fa-x-twitter text-4xl md:text-5xl"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider">Twitter</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gelişmiş Başvuru Formu & Webhook -->
+    <section id="apply" class="py-24 relative z-20 overflow-hidden border-t border-neonPurple/20 bg-black/50">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(255,0,127,0.1),transparent_60%)]"></div>
-        <div class="max-w-4xl mx-auto px-6 relative z-10">
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
             
             <div class="text-center mb-12 apply-header">
-                <i class="fa-solid fa-passport text-5xl text-neonPink mb-4 drop-shadow-[0_0_15px_rgba(255,0,127,0.8)]"></i>
-                <h2 class="text-4xl font-black text-white uppercase neon-text">Şehre Biletini Al</h2>
-                <p class="text-gray-400 mt-3">Gönderdiğin başvuru doğrudan Discord loglarımıza düşecektir.</p>
+                <i class="fa-solid fa-file-signature text-5xl text-neonPink mb-4 drop-shadow-[0_0_15px_rgba(255,0,127,0.8)]"></i>
+                <h2 class="text-4xl font-black text-white uppercase neon-text">Resmi Kayıt Formu</h2>
+                <p class="text-gray-400 mt-3">Sistem doğrudan Discord mülakat kanalımıza bağlıdır. Lütfen eksiksiz doldurun.</p>
             </div>
 
-            <div class="glass rounded-3xl p-8 md:p-12 shadow-[0_0_40px_rgba(157,0,255,0.15)] apply-form-container relative overflow-hidden">
+            <div class="glass rounded-3xl p-6 md:p-12 shadow-[0_0_40px_rgba(157,0,255,0.15)] apply-form-container relative overflow-hidden border border-neonPurple/40">
                 <div id="successOverlay" class="absolute inset-0 bg-darkBg/95 backdrop-blur-md z-50 hidden flex-col items-center justify-center text-center opacity-0">
                     <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(74,222,128,0.5)] scale-0 success-icon">
                         <i class="fa-solid fa-check text-5xl text-white"></i>
                     </div>
-                    <h3 class="text-3xl font-black text-white mb-2 translate-y-4 success-text opacity-0">Başvurun İletildi!</h3>
-                    <p class="text-gray-400 translate-y-4 success-text opacity-0">Discord üzerinden bilgilendirme yapılacaktır.</p>
+                    <h3 class="text-3xl font-black text-white mb-2 translate-y-4 success-text opacity-0">Başvurun Başarıyla İletildi!</h3>
+                    <p class="text-gray-400 translate-y-4 success-text opacity-0">Yönetim ekibi Discord üzerinden iletişime geçecektir.</p>
                 </div>
 
-                <form id="whitelistForm" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 form-element">
-                        <div>
-                            <label class="block text-sm text-neonPurple font-bold mb-2">Discord ID / Kullanıcı Adı</label>
-                            <input type="text" id="discordId" class="custom-input interactive" placeholder="örn: user#1234" required>
-                        </div>
-                        <div>
-                            <label class="block text-sm text-neonPurple font-bold mb-2">Steam Hex</label>
-                            <input type="text" id="steamHex" class="custom-input interactive" placeholder="steam:110000100000000" required>
-                        </div>
-                    </div>
+                <form id="whitelistForm" class="space-y-10">
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 form-element">
-                        <div>
-                            <label class="block text-sm text-neonPink font-bold mb-2">Karakter Adı Soyadı</label>
-                            <input type="text" id="charName" class="custom-input interactive" placeholder="İsim ve Soyisim" required>
-                        </div>
-                        <div>
-                            <label class="block text-sm text-neonPink font-bold mb-2">Gerçek Yaş</label>
-                            <input type="number" id="realAge" class="custom-input interactive" placeholder="18+" min="16" required>
+                    <!-- BÖLÜM 1: OOC BİLGİLER -->
+                    <div class="form-section">
+                        <h3 class="text-xl font-bold text-white form-section-title uppercase tracking-widest"><i class="fa-solid fa-user-astronaut text-neonPurple mr-2"></i> Adım 1: Kişisel (OOC) Bilgiler</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div>
+                                <label class="block text-sm text-gray-300 font-bold mb-2">Discord ID / Kullanıcı Adı</label>
+                                <input type="text" id="discordId" class="custom-input interactive" placeholder="örn: kullaniciadi#1234" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-300 font-bold mb-2">Steam Hex Kodu</label>
+                                <input type="text" id="steamHex" class="custom-input interactive" placeholder="steam:1100001xxxxxxxx" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-300 font-bold mb-2">Gerçek Yaşınız</label>
+                                <input type="number" id="realAge" class="custom-input interactive" placeholder="18" min="16" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-300 font-bold mb-2">FiveM Oynama Saatiniz</label>
+                                <input type="number" id="fivemHours" class="custom-input interactive" placeholder="Örn: 850" required>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-element">
-                        <label class="block text-sm text-sunsetOrange font-bold mb-2">Karakterinizin Hikayesi ve Amacı</label>
-                        <textarea id="charStory" class="custom-input resize-none h-32 interactive" placeholder="Karakterinizin geçmişini ve hedeflerini detaylıca anlatın..." required></textarea>
+                    <!-- BÖLÜM 2: IC BİLGİLER -->
+                    <div class="form-section">
+                        <h3 class="text-xl font-bold text-white form-section-title uppercase tracking-widest"><i class="fa-solid fa-mask text-neonPink mr-2"></i> Adım 2: Karakter (IC) Bilgileri</h3>
+                        <div class="space-y-6 mt-6">
+                            <div>
+                                <label class="block text-sm text-gray-300 font-bold mb-2">Karakter Adı ve Soyadı</label>
+                                <input type="text" id="charName" class="custom-input interactive" placeholder="İsim Soyisim" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-300 font-bold mb-2">Karakterinizin Geçmişi ve Los Santos'taki Hedefleri</label>
+                                <textarea id="charStory" class="custom-input resize-none h-40 interactive" placeholder="Karakteriniz nereden geliyor, korkuları, zaafları ve şehirdeki temel amacı nedir? Detaylıca anlatın..." required></textarea>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="flex items-center gap-3 pt-4 form-element">
+                    <!-- BÖLÜM 3: RP TESTİ -->
+                    <div class="form-section bg-black/40 p-6 rounded-xl border border-neonPurple/20">
+                        <h3 class="text-xl font-bold text-white form-section-title uppercase tracking-widest border-none after:hidden"><i class="fa-solid fa-scale-balanced text-sunsetOrange mr-2"></i> Adım 3: Rol Bilgisi (Hard RP)</h3>
+                        <p class="text-sm text-gray-400 mb-6">Aşağıdaki senaryolara vereceğiniz cevaplar, başvurunuzun onaylanmasında kritik rol oynar.</p>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm text-white font-bold mb-2">Senaryo 1: <span class="font-normal text-gray-300">Issız bir sokakta, silahlı 3 kişi aniden önünüzü kesti ve araçtan inmenizi söyledi. Tepkiniz ne olur? (Fear RP)</span></label>
+                                <textarea id="rpAnswer1" class="custom-input resize-none h-24 interactive" placeholder="Tepkinizi rol içi bir şekilde anlatın..." required></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-white font-bold mb-2">Senaryo 2: <span class="font-normal text-gray-300">Hastane önünde sivil biriyle ufak bir tartışma yaşadınız. Şahıs size ağır bir küfür etti. Karşılığınız ne olur?</span></label>
+                                <textarea id="rpAnswer2" class="custom-input resize-none h-24 interactive" placeholder="Tepkinizi rol içi bir şekilde anlatın..." required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 pt-4 form-section">
                         <input type="checkbox" id="rules" class="w-5 h-5 accent-neonPink cursor-pointer interactive" required>
-                        <label for="rules" class="text-sm text-gray-400 cursor-pointer hover:text-white transition">Kuralları okudum, Hard RP kurallarını kabul ediyorum.</label>
+                        <label for="rules" class="text-sm text-gray-400 cursor-pointer hover:text-white transition">Tüm kuralları okudum, Hard RP kurallarına uymadığım takdirde uzaklaştırılmayı kabul ediyorum.</label>
                     </div>
 
-                    <button type="submit" id="submitBtn" class="w-full py-4 bg-gradient-to-r from-neonPurple to-neonPink text-white font-black rounded-xl hover:shadow-[0_0_30px_rgba(255,0,127,0.6)] transition-all duration-300 flex items-center justify-center gap-3 group interactive form-element">
+                    <button type="submit" id="submitBtn" class="w-full py-5 bg-gradient-to-r from-neonPurple to-neonPink text-white font-black text-lg rounded-xl hover:shadow-[0_0_40px_rgba(255,0,127,0.6)] transition-all duration-300 flex items-center justify-center gap-3 group interactive form-section">
                         <span>BAŞVURUYU GÖNDER</span>
                         <i class="fa-solid fa-paper-plane group-hover:translate-x-2 transition-transform"></i>
                     </button>
@@ -395,7 +413,7 @@
 
     <footer class="bg-[#0a0312] py-12 border-t border-neonPurple/30 text-center relative z-20">
         <h2 class="font-logo text-4xl text-white mb-6 neon-text">ParadiseV</h2>
-        <p class="text-gray-600 text-sm">&copy; 2026 Paradise Roleplay. Los Santos'un yeni adresi.</p>
+        <p class="text-gray-600 text-sm">&copy; 2026 Paradise Roleplay. Tüm sistemler aktif.</p>
     </footer>
 
     <script>
@@ -452,54 +470,28 @@
             gsap.fromTo(".hero-anim", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: "power2.out" }, "-=0.8");
 
             mm.add("(min-width: 768px)", () => {
+                // Başlıklar
                 gsap.utils.toArray('.section-title').forEach(title => {
                     gsap.fromTo(title, { opacity: 0, y: 50 }, { scrollTrigger: { trigger: title, start: "top 85%" }, opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.2)" });
                 });
                 
-                // İstatistik Sayaç Animasyonu
-                const counters = document.querySelectorAll('.counter-value');
-                counters.forEach(counter => {
-                    gsap.fromTo(counter, { innerHTML: 0 }, {
-                        innerHTML: counter.getAttribute('data-target'),
-                        duration: 2,
-                        snap: { innerHTML: 1 },
-                        ease: "power2.out",
-                        scrollTrigger: { trigger: counter, start: "top 85%" }
-                    });
-                });
-
+                // Kartlar ve Bölgeler
                 gsap.fromTo(".feature-card", { opacity: 0, y: 80, rotationX: -10 }, { scrollTrigger: { trigger: "#features", start: "top 75%" }, opacity: 1, y: 0, rotationX: 0, duration: 0.8, stagger: 0.15, ease: "power3.out" });
-                gsap.fromTo(".accordion-item", { opacity: 0, x: -30 }, { scrollTrigger: { trigger: "#faq", start: "top 80%" }, opacity: 1, x: 0, duration: 0.5, stagger: 0.1, ease: "power2.out" });
-                gsap.fromTo(".apply-header, .form-element", { opacity: 0, y: 30 }, { scrollTrigger: { trigger: "#apply", start: "top 80%" }, opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" });
+                gsap.fromTo(".zone-card", { opacity: 0, scale: 0.9 }, { scrollTrigger: { trigger: "#zones", start: "top 80%" }, opacity: 1, scale: 1, duration: 0.8, stagger: 0.2, ease: "power2.out" });
+                
+                // Sosyal Medya
+                gsap.fromTo(".social-btn", { opacity: 0, y: 50 }, { scrollTrigger: { trigger: "#social", start: "top 85%" }, opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "back.out(1.5)" });
+
+                // Form Sekmeleri (Aşağı indikçe adım adım gelsin)
+                gsap.fromTo(".apply-header, .form-section", { opacity: 0, y: 40 }, { scrollTrigger: { trigger: "#apply", start: "top 80%" }, opacity: 1, y: 0, duration: 0.7, stagger: 0.2, ease: "power2.out" });
             });
 
             mm.add("(max-width: 767px)", () => {
-                gsap.utils.toArray('.feature-card, .accordion-item, .form-element').forEach(el => {
-                    gsap.fromTo(el, { opacity: 0 }, { scrollTrigger: { trigger: el, start: "top 90%" }, opacity: 1, duration: 0.5 });
-                });
-                
-                // Mobilde Sayaç Animasyonu
-                const counters = document.querySelectorAll('.counter-value');
-                counters.forEach(counter => {
-                    gsap.fromTo(counter, { innerHTML: 0 }, {
-                        innerHTML: counter.getAttribute('data-target'),
-                        duration: 1.5,
-                        snap: { innerHTML: 1 },
-                        scrollTrigger: { trigger: counter, start: "top 90%" }
-                    });
+                gsap.utils.toArray('.feature-card, .zone-card, .social-btn, .form-section').forEach(el => {
+                    gsap.fromTo(el, { opacity: 0, y: 20 }, { scrollTrigger: { trigger: el, start: "top 90%" }, opacity: 1, y: 0, duration: 0.5 });
                 });
             });
         }
-
-        document.querySelectorAll('.acc-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                document.querySelectorAll('.accordion-item').forEach(other => {
-                    if(other !== item) other.classList.remove('active');
-                });
-                item.classList.toggle('active');
-            });
-        });
 
         if (window.matchMedia("(pointer: fine)").matches) {
             const cursorDot = document.querySelector('.cursor-dot');
@@ -510,7 +502,7 @@
                 cursorOutline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 200, fill: "forwards" });
             });
 
-            document.querySelectorAll('.interactive, a, button, input, textarea, .accordion-item, .gallery-img').forEach(el => {
+            document.querySelectorAll('.interactive, a, button, input, textarea').forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     cursorOutline.style.width = '60px'; cursorOutline.style.height = '60px';
                     cursorOutline.style.borderColor = '#9d00ff'; cursorOutline.style.backgroundColor = 'rgba(157, 0, 255, 0.1)';
@@ -527,45 +519,33 @@
         btn.addEventListener('click', () => menu.classList.toggle('hidden'));
         document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => menu.classList.add('hidden')));
 
-        document.getElementById('discordLoginBtn').addEventListener('click', function() {
-            const btnText = document.getElementById('discordBtnText');
-            const icon = this.querySelector('i');
-            btnText.innerText = "Bağlanıyor...";
-            icon.classList.replace('fa-discord', 'fa-circle-notch');
-            icon.classList.add('fa-spin');
-            setTimeout(() => {
-                this.classList.add('bg-[#5865F2]');
-                icon.classList.remove('fa-circle-notch', 'fa-spin');
-                icon.classList.add('fa-check-circle');
-                btnText.innerText = "Bağlandı: Okyanus#1999";
-            }, 1000);
-        });
-
+        // Gelişmiş Form Gönderimi ve Discord Webhook (Güçlü Yapı)
         document.getElementById('whitelistForm').addEventListener('submit', function(e) {
             e.preventDefault(); 
             
-            const WEBHOOK_URL = "BURAYA_DISCORD_WEBHOOK_LINKINI_YAPISTIR";
+            const WEBHOOK_URL = "BURAYA_DISCORD_WEBHOOK_LINKINI_YAPISTIR"; // LİNKİ BURAYA YAPIŞTIR
             
             const submitBtn = document.getElementById('submitBtn');
             const overlay = document.getElementById('successOverlay');
             
-            submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Gönderiliyor...';
+            submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> İşleniyor...';
             submitBtn.classList.add('opacity-75', 'pointer-events-none');
 
+            // Form Verilerini Topla
             const payload = {
-                username: "ParadiseV Başvuru Sistemi",
+                username: "ParadiseV Kayıt Sistemi",
                 avatar_url: "https://i.imgur.com/K1T7KXY.png", 
                 embeds: [{
-                    title: "📝 Yeni Whitelist Başvurusu",
-                    color: 16711807, 
+                    title: "🚀 Yeni Başvuru Ulaştı!",
+                    color: 16711807, // #ff007f Neon Pink
                     fields: [
-                        { name: "👤 Discord ID", value: document.getElementById('discordId').value, inline: true },
-                        { name: "🔗 Steam Hex", value: document.getElementById('steamHex').value, inline: true },
-                        { name: "🎭 Karakter Adı", value: document.getElementById('charName').value, inline: true },
-                        { name: "🎂 Gerçek Yaş", value: document.getElementById('realAge').value, inline: true },
-                        { name: "📖 Karakter Hikayesi", value: document.getElementById('charStory').value }
+                        { name: "🛡️ OOC Bilgiler", value: `**Discord:** ${document.getElementById('discordId').value}\n**Steam Hex:** ${document.getElementById('steamHex').value}\n**Yaş:** ${document.getElementById('realAge').value}\n**FiveM Saati:** ${document.getElementById('fivemHours').value}`, inline: false },
+                        { name: "🎭 IC Bilgiler", value: `**Karakter Adı:** ${document.getElementById('charName').value}`, inline: false },
+                        { name: "📖 Karakter Hikayesi", value: `\`\`\`${document.getElementById('charStory').value}\`\`\``, inline: false },
+                        { name: "⚖️ RP Senaryo - 1 (Fear RP)", value: `> ${document.getElementById('rpAnswer1').value}`, inline: false },
+                        { name: "⚖️ RP Senaryo - 2 (Tartışma)", value: `> ${document.getElementById('rpAnswer2').value}`, inline: false }
                     ],
-                    footer: { text: "ParadiseV Sunucu Otomasyonu" },
+                    footer: { text: "ParadiseV Yönetim Paneli" },
                     timestamp: new Date().toISOString()
                 }]
             };
@@ -577,11 +557,12 @@
                     body: JSON.stringify(payload)
                 }).then(() => showSuccess())
                 .catch(err => {
-                    alert("Gönderim hatası. Webhook linkini kontrol edin.");
+                    alert("Sistemsel bir hata oluştu. Lütfen Webhook linkini kontrol edin.");
                     resetBtn();
                 });
             } else {
-                setTimeout(showSuccess, 800);
+                // Test animasyonu (Link girilmemişse)
+                setTimeout(showSuccess, 1000);
             }
 
             function showSuccess() {
@@ -594,7 +575,7 @@
                   .to(".success-text", { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 });
 
                 setTimeout(() => {
-                    gsap.to(overlay, { opacity: 0, duration: 0.4, onComplete: () => {
+                    gsap.to(overlay, { opacity: 0, duration: 0.5, onComplete: () => {
                         overlay.classList.add('hidden');
                         overlay.classList.remove('flex');
                         document.getElementById('whitelistForm').reset();
