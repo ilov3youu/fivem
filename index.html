@@ -2,8 +2,8 @@
 <html lang="tr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ParadiseV Roleplay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ParadiseV Roleplay | Resmi Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -14,7 +14,7 @@
             theme: {
                 extend: {
                     colors: {
-                        darkBg: '#0f0518',
+                        darkBg: '#0a0312',
                         neonPurple: '#9d00ff',
                         neonPink: '#ff007f',
                         sunsetOrange: '#ff7e5f',
@@ -30,11 +30,12 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Pacifico&display=swap');
 
-        body { background-color: #0f0518; color: #fff; overflow-x: hidden; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f0518; }
+        body { background-color: #0a0312; color: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0312; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #9d00ff, #ff007f); border-radius: 10px; }
 
+        /* Synthwave Grid & Parçacıklar */
         .synthwave-grid {
             position: absolute; bottom: 0; left: 0; width: 100%; height: 50vh;
             background: 
@@ -46,18 +47,19 @@
             animation: grid-move 5s linear infinite; z-index: 0; pointer-events: none;
         }
         @keyframes grid-move { 0% { background-position: 0 0, 0 0, 0 0; } 100% { background-position: 0 0, 0 40px, 0 40px; } }
-
-        #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
+        
+        #particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
         .particle { position: absolute; border-radius: 50%; filter: blur(3px); animation: floatUp linear infinite; }
         @keyframes floatUp { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 50% { opacity: 1; scale: 1; } 100% { transform: translateY(-10vh) scale(0); opacity: 0; } }
 
         .neon-text { text-shadow: 0 0 10px #9d00ff, 0 0 20px #9d00ff, 0 0 40px #ff007f; }
-        .glass { background: rgba(20, 5, 35, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(157, 0, 255, 0.2); }
+        .glass { background: rgba(15, 5, 25, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(157, 0, 255, 0.15); }
 
-        .loader-bg { position: fixed; inset: 0; background: #0f0518; z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        /* Yükleme Ekranı */
+        .loader-bg { position: fixed; inset: 0; background: #0a0312; z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .loader-sun { width: 100px; height: 100px; background: linear-gradient(to bottom, #ff007f, #ff7e5f); border-radius: 50%; box-shadow: 0 0 50px #ff007f; animation: pulse 2s infinite alternate; margin-bottom: 20px;}
-        @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.1); box-shadow: 0 0 80px #ff7e5f; } }
-        
+
+        /* Özel İmleç */
         @media (pointer: fine) {
             body { cursor: none; }
             .cursor-dot { position: fixed; width: 6px; height: 6px; background: #fff; border-radius: 50%; z-index: 100000; pointer-events: none; transform: translate(-50%, -50%); box-shadow: 0 0 10px #fff; }
@@ -65,40 +67,71 @@
         }
         @media (pointer: coarse) { .cursor-dot, .cursor-outline { display: none !important; } }
 
-        .marquee-container { width: 100%; overflow: hidden; background: rgba(157, 0, 255, 0.2); border-top: 1px solid #9d00ff; border-bottom: 1px solid #ff007f; padding: 10px 0; position: relative; z-index: 20; box-shadow: 0 0 20px rgba(255, 0, 127, 0.3); }
-        .marquee-content { display: flex; white-space: nowrap; animation: marquee 25s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        /* Sabit Widget'lar */
+        .interactive { transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .interactive:hover { transform: translateY(-3px); }
+        .desktop-widget { position: fixed; z-index: 9998; transition: transform 0.3s; }
+        .server-widget { bottom: 20px; right: 20px; }
+        .music-player { bottom: 20px; left: 20px; }
+        .desktop-widget:hover { transform: translateY(-5px); }
+        .status-dot { width: 10px; height: 10px; border-radius: 50%; background-color: #22c55e; box-shadow: 0 0 10px #22c55e; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-        .custom-input { width: 100%; background: rgba(15, 5, 24, 0.7); border: 1px solid rgba(157, 0, 255, 0.4); border-radius: 0.5rem; padding: 1rem; color: white; outline: none; transition: all 0.3s; }
-        .custom-input:focus { border-color: #ff007f; box-shadow: 0 0 15px rgba(255, 0, 127, 0.4); transform: translateY(-2px); }
-
-        /* 3D Flip Animasyon Sınıfları */
-        .perspective-1000 { perspective: 1000px; }
-        .transform-style-3d { transform-style: preserve-3d; }
-        .backface-hidden { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
-        
-        .team-card-inner { transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .group:hover .team-card-inner { transform: rotateY(180deg); }
-
-        /* Müzik ve Sabit Widget'lar */
-        .music-player { position: fixed; bottom: 20px; left: 20px; z-index: 9998; transition: transform 0.3s; }
-        .music-player:hover { transform: translateY(-5px); }
+        /* Müzik Equalizer */
         .equalizer { display: flex; gap: 3px; height: 15px; align-items: flex-end; }
         .eq-bar { width: 4px; background-color: #ff007f; border-radius: 2px; animation: eqAnim 0.5s infinite alternate ease-in-out; }
-        .eq-bar:nth-child(2) { animation-delay: 0.1s; } .eq-bar:nth-child(3) { animation-delay: 0.2s; } .eq-bar:nth-child(4) { animation-delay: 0.3s; }
+        .eq-bar:nth-child(2) { animation-delay: 0.1s; } .eq-bar:nth-child(3) { animation-delay: 0.2s; }
         @keyframes eqAnim { 0% { height: 3px; } 100% { height: 15px; } }
         .music-paused .eq-bar { animation-play-state: paused; height: 3px; }
 
-        /* Gizli objeler GSAP için */
-        .gsap-reveal { opacity: 0; visibility: hidden; }
+        /* YOL HARİTASI (TIMELINE) DÜZELTİLDİ */
+        .timeline-container { position: relative; width: 100%; max-width: 800px; margin: 0 auto; padding: 20px 0; }
+        .timeline-container::after { content: ''; position: absolute; width: 4px; background: rgba(157, 0, 255, 0.3); top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px; }
+        .timeline-item { padding: 10px 40px; position: relative; width: 50%; }
+        .timeline-item::after { content: ''; position: absolute; width: 20px; height: 20px; background-color: #0f0518; border: 4px solid #ff007f; top: 20px; border-radius: 50%; z-index: 1; box-shadow: 0 0 10px #ff007f; }
+        .left { left: 0; }
+        .right { left: 50%; }
+        .timeline-item.left::after { right: -10px; }
+        .timeline-item.right::after { left: -10px; }
+        @media screen and (max-width: 768px) {
+            .timeline-container::after { left: 20px; }
+            .timeline-item { width: 100%; padding-left: 50px; padding-right: 10px; }
+            .timeline-item.left::after, .timeline-item.right::after { left: 10px; }
+            .right { left: 0; }
+        }
+
+        /* Sosyal Butonlar */
+        .social-btn { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .discord-btn:hover { background: #5865F2; box-shadow: 0 0 30px #5865F2; border-color: #5865F2; }
+        .youtube-btn:hover { background: #FF0000; box-shadow: 0 0 30px #FF0000; border-color: #FF0000; }
+        .instagram-btn:hover { background: #E1306C; box-shadow: 0 0 30px #E1306C; border-color: #E1306C; }
+        .x-btn:hover { background: #ffffff; color: #000; box-shadow: 0 0 30px #ffffff; border-color: #ffffff; }
+
+        /* Akordeon Wiki */
+        .accordion-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s ease; }
+        .accordion-content > div { overflow: hidden; }
+        .accordion-item.active .accordion-content { grid-template-rows: 1fr; }
+        .accordion-item.active .acc-icon { transform: rotate(180deg); color: #ff007f; }
+
+        /* Multi-Step Form */
+        .form-step { display: none; opacity: 0; transform: translateY(20px); transition: all 0.4s ease; }
+        .form-step.active { display: block; opacity: 1; transform: translateY(0); }
+        .step-indicator { transition: all 0.3s ease; }
+        .step-indicator.active { background: #ff007f; box-shadow: 0 0 15px #ff007f; border-color: #ff007f; color: white; }
+        .step-indicator.completed { background: #9d00ff; border-color: #9d00ff; color: white; }
+        .custom-input { width: 100%; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(157, 0, 255, 0.4); border-radius: 0.5rem; padding: 1rem; color: white; outline: none; transition: all 0.3s; font-size: 16px; }
+        .custom-input:focus { border-color: #ff007f; box-shadow: 0 0 15px rgba(255, 0, 127, 0.4); transform: translateY(-2px); }
     </style>
 </head>
 <body class="bg-darkBg antialiased selection:bg-neonPink selection:text-white">
 
+    <!-- Uçuşan Parçacıklar -->
     <div id="particles"></div>
+
+    <!-- Müzik -->
     <audio id="bg-music" loop><source src="https://assets.mixkit.co/music/preview/mixkit-synthwave-80s-164.mp3" type="audio/mpeg"></audio>
 
+    <!-- Yükleme Ekranı -->
     <div class="loader-bg">
         <div class="loader-sun"></div>
         <h1 class="font-logo text-5xl text-white neon-text tracking-widest">ParadiseV</h1>
@@ -107,333 +140,377 @@
         </div>
     </div>
 
+    <!-- Özel İmleç -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
-    <div class="music-player glass px-4 py-3 rounded-xl border border-neonPink/50 flex items-center gap-4 interactive cursor-pointer music-paused" id="musicToggleBtn">
-        <div class="w-10 h-10 rounded-full bg-neonPink/20 flex items-center justify-center text-neonPink">
-            <i class="fa-solid fa-play" id="musicIcon"></i>
-        </div>
-        <div class="flex flex-col">
-            <span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Paradise FM</span>
-            <div class="equalizer mt-1"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
-        </div>
+    <!-- Sabit Widget'lar -->
+    <div class="desktop-widget music-player glass px-4 py-3 rounded-xl border border-neonPink/50 hidden md:flex items-center gap-4 interactive cursor-pointer music-paused" id="musicToggleBtn">
+        <div class="w-10 h-10 rounded-full bg-neonPink/20 flex items-center justify-center text-neonPink"><i class="fa-solid fa-play" id="musicIcon"></i></div>
+        <div class="flex flex-col"><span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Paradise FM</span><div class="equalizer mt-1"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div></div>
     </div>
 
-    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2 group interactive">
-                <i class="fa-solid fa-palm-tree text-neonPink text-3xl group-hover:rotate-12 transition-transform duration-300"></i>
-                <span class="font-logo text-3xl text-white tracking-widest drop-shadow-[0_0_10px_rgba(255,0,127,0.8)]">ParadiseV</span>
+    <div class="desktop-widget server-widget glass px-4 py-3 rounded-xl border border-neonPurple/50 hidden md:flex items-center gap-4 interactive cursor-pointer relative" id="copyIpBtn">
+        <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-neonPurple text-white text-xs font-bold px-3 py-1 rounded opacity-0 transition-opacity duration-300" id="ipTooltip">IP Kopyalandı!</div>
+        <div class="flex flex-col"><span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Durum</span><span class="text-white font-black">Aktif</span></div>
+        <div class="h-8 w-px bg-white/20"></div>
+        <div class="flex flex-col items-end"><span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Oyuncu</span><div class="flex items-center gap-2"><span class="text-neonPink font-black">124</span><span class="text-gray-500 text-xs">/128</span><div class="status-dot"></div></div></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 pt-2" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-20 md:h-24 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group interactive magnetic">
+                <i class="fa-solid fa-palm-tree text-neonPink text-2xl md:text-3xl group-hover:rotate-12 transition-transform"></i>
+                <span class="font-logo text-2xl md:text-3xl text-white tracking-widest drop-shadow-[0_0_10px_rgba(255,0,127,0.8)]">ParadiseV</span>
             </a>
             
-            <div class="hidden lg:flex space-x-6 items-center nav-links relative z-50">
+            <div class="hidden lg:flex space-x-6 items-center nav-links">
+                <a href="#lore" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Hikaye</a>
                 <a href="#features" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Sistemler</a>
-                <a href="#jobs" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Meslekler</a>
-                <a href="#team" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Yönetim</a>
-                <a href="#apply" class="relative px-6 py-2 bg-transparent border-2 border-neonPurple text-white font-bold rounded-full overflow-hidden interactive hover:shadow-[0_0_20px_rgba(157,0,255,0.6)] transition-all group ml-4">
-                    <span class="relative z-10 group-hover:text-white">HEMEN BAŞVUR</span>
+                <a href="#roadmap" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Yol Haritası</a>
+                <a href="#wiki" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Kurallar</a>
+                <a href="#social" class="text-sm font-bold tracking-widest text-gray-300 hover:text-neonPink uppercase transition interactive">Sosyal</a>
+                
+                <a href="#apply" class="relative px-6 py-2 bg-transparent border-2 border-neonPurple text-white font-bold rounded-full overflow-hidden interactive magnetic hover:shadow-[0_0_20px_rgba(157,0,255,0.6)] group ml-4">
+                    <span class="relative z-10 group-hover:text-white">BAŞVURU YAP</span>
                     <div class="absolute inset-0 h-full w-0 bg-gradient-to-r from-neonPurple to-neonPink transition-all duration-300 ease-out group-hover:w-full z-0"></div>
                 </a>
             </div>
-            <button id="mobile-menu-btn" class="lg:hidden text-white interactive"><i class="fa-solid fa-bars text-3xl"></i></button>
+            <button id="mobile-menu-btn" class="lg:hidden text-white interactive p-2"><i class="fa-solid fa-bars text-3xl"></i></button>
         </div>
         
         <div id="mobile-menu" class="hidden lg:hidden glass absolute top-20 left-0 w-full border-b border-neonPurple/30 shadow-2xl z-40">
-            <div class="flex flex-col px-6 py-8 space-y-6 text-center">
+            <div class="flex flex-col px-6 py-6 space-y-6 text-center">
+                <a href="#lore" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Hikaye</a>
                 <a href="#features" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Sistemler</a>
-                <a href="#jobs" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Meslekler</a>
-                <a href="#team" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Yönetim</a>
-                <a href="#apply" class="mobile-link px-6 py-4 bg-gradient-to-r from-neonPurple to-neonPink text-white font-bold rounded-full mt-4">BAŞVURU YAP</a>
+                <a href="#roadmap" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Yol Haritası</a>
+                <a href="#wiki" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Kurallar</a>
+                <a href="#social" class="mobile-link text-lg font-bold text-gray-300 hover:text-neonPink uppercase">Sosyal Ağlar</a>
+                <a href="#apply" class="mobile-link px-6 py-4 bg-gradient-to-r from-neonPurple to-neonPink text-white font-bold rounded-full mt-2">BAŞVURU YAP</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero -->
-    <section class="min-h-[90vh] flex items-center justify-center relative overflow-hidden" id="hero">
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden" id="hero">
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(157,0,255,0.15),transparent_70%)] z-0"></div>
         <div class="synthwave-grid"></div>
         
-        <div class="max-w-5xl mx-auto px-4 relative z-10 text-center flex flex-col items-center pt-20">
-            <div class="w-32 h-32 md:w-48 md:h-48 bg-gradient-to-b from-sunsetOrange to-neonPink rounded-full absolute -top-10 md:-top-20 -z-10 shadow-[0_0_100px_rgba(255,126,95,0.8)] hero-sun"></div>
-            <h1 class="font-logo text-7xl md:text-9xl text-white tracking-widest neon-text hero-anim mt-10">ParadiseV</h1>
-            <p class="text-xl md:text-2xl text-gray-300 font-light mt-6 hero-anim tracking-wider uppercase">Hard Roleplay Deneyimi</p>
+        <div class="w-full max-w-5xl mx-auto px-4 relative z-10 text-center flex flex-col items-center pt-10 md:pt-20">
+            <div class="w-32 h-32 md:w-48 md:h-48 bg-gradient-to-b from-sunsetOrange to-neonPink rounded-full absolute -top-5 md:-top-20 -z-10 shadow-[0_0_100px_rgba(255,126,95,0.8)] hero-sun"></div>
             
-            <a href="#features" class="mt-12 w-16 h-16 rounded-full border-2 border-neonPink/50 flex items-center justify-center text-neonPink hover:bg-neonPink hover:text-white transition-all duration-300 interactive hero-anim shadow-[0_0_20px_rgba(255,0,127,0.4)] animate-bounce">
-                <i class="fa-solid fa-arrow-down text-2xl"></i>
-            </a>
+            <h1 class="font-logo text-6xl sm:text-7xl md:text-9xl text-white tracking-widest neon-text hero-anim mt-10">ParadiseV</h1>
+            <p class="text-lg sm:text-xl md:text-2xl text-gray-300 font-light mt-4 hero-anim tracking-wider uppercase">Sınırsız Hikaye, Gerçekçi Yaşam</p>
+            
+            <div class="flex gap-4 mt-10 hero-anim">
+                <a href="#apply" class="px-8 py-3 bg-neonPink text-white font-bold rounded-full shadow-[0_0_20px_rgba(255,0,127,0.5)] hover:bg-white hover:text-neonPink transition-colors interactive magnetic">Başvuru Yap</a>
+                <a href="https://discord.gg/paradisev" target="_blank" class="px-8 py-3 bg-[#5865F2] text-white font-bold rounded-full shadow-[0_0_20px_rgba(88,101,242,0.5)] hover:bg-white hover:text-[#5865F2] transition-colors interactive magnetic flex items-center gap-2"><i class="fa-brands fa-discord"></i> Discord</a>
+            </div>
         </div>
     </section>
 
-    <div class="marquee-container">
-        <div class="marquee-content text-sm md:text-base font-bold tracking-widest uppercase text-white">
-            <span class="mx-8"><i class="fa-solid fa-bolt text-sunsetOrange"></i> ParadiseV Sezon 1 Başladı!</span>
-            <span class="mx-8"><i class="fa-solid fa-shield-halved text-neonPurple"></i> LSPD Memur Alımları Devam Ediyor.</span>
-            <span class="mx-8"><i class="fa-solid fa-sack-dollar text-neonPink"></i> Hard Ekonomi Devrede, Sokaklar Acımasız.</span>
-            <span class="mx-8"><i class="fa-solid fa-bolt text-sunsetOrange"></i> ParadiseV Sezon 1 Başladı!</span>
-            <span class="mx-8"><i class="fa-solid fa-shield-halved text-neonPurple"></i> LSPD Memur Alımları Devam Ediyor.</span>
-            <span class="mx-8"><i class="fa-solid fa-sack-dollar text-neonPink"></i> Hard Ekonomi Devrede, Sokaklar Acımasız.</span>
+    <!-- Lore / Vizyon -->
+    <section id="lore" class="py-20 md:py-32 relative z-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2 anim-trigger">
+                    <h2 class="text-neonPink font-bold tracking-widest text-sm uppercase mb-2">Sunucu Vizyonu</h2>
+                    <h3 class="text-3xl md:text-5xl font-black text-white uppercase neon-text mb-6">Sokakların Kuralı</h3>
+                    <p class="text-gray-300 leading-relaxed mb-4">ParadiseV, sıradan bir "gir, para kas, araba al" sunucusu değildir. Karakter ve hikaye odaklı modern şehir atmosferinde, her eyleminizin kelebek etkisi yarattığı gerçek bir rol platformudur.</p>
+                    <p class="text-gray-300 leading-relaxed mb-6">Emek vermeden zengin olamazsınız. İllegal rollerde güvenli bölge istismarı yapılamaz. Karakteriniz yaralandığında "sakatlık rolü" yapmak zorundadır.</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-neonPurple/20 flex items-center justify-center text-neonPurple border border-neonPurple/50"><i class="fa-solid fa-ban"></i></div>
+                        <span class="text-sm font-bold text-white uppercase tracking-wider">Kesinlikle Pay-To-Win Yoktur.</span>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 glass p-4 rounded-2xl anim-trigger border-neonPurple/50 relative group">
+                    <div class="absolute inset-0 bg-neonPink/20 blur-2xl -z-10 group-hover:bg-neonPink/30 transition"></div>
+                    <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=2070" class="w-full h-auto rounded-xl object-cover grayscale hover:grayscale-0 transition duration-500" alt="Los Santos">
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- Sistemler -->
-    <section id="features" class="py-24 relative z-20">
+    <section id="features" class="py-20 relative z-20 bg-black/40 border-y border-neonPurple/30">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20 section-title gsap-reveal">
+            <div class="text-center mb-16 anim-trigger">
                 <h2 class="text-neonPink font-bold tracking-widest text-sm uppercase mb-2">Tavizsiz Kalite</h2>
-                <h3 class="text-4xl md:text-5xl font-black text-white uppercase neon-text">Altyapı & Sistemler</h3>
+                <h3 class="text-3xl md:text-5xl font-black text-white uppercase neon-text">Altyapı & Sistemler</h3>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass p-8 rounded-2xl feature-card interactive gsap-reveal hover:shadow-[0_0_30px_rgba(157,0,255,0.3)] transition-all duration-300">
-                    <div class="w-16 h-16 rounded-full bg-neonPurple/20 flex items-center justify-center text-neonPurple text-3xl mb-6 shadow-[0_0_15px_rgba(157,0,255,0.5)]">
-                        <i class="fa-solid fa-shirt"></i>
-                    </div>
+                <div class="glass p-8 rounded-2xl interactive anim-trigger hover:shadow-[0_0_30px_rgba(157,0,255,0.3)]">
+                    <div class="w-16 h-16 rounded-full bg-neonPurple/20 flex items-center justify-center text-neonPurple text-3xl mb-6"><i class="fa-solid fa-shirt"></i></div>
                     <h4 class="text-2xl font-bold text-white mb-3">Clothing Packs</h4>
                     <p class="text-gray-400 text-sm leading-relaxed">Özenle optimize edilmiş 3D giysi paketleri ile karakterinizi tam istediğiniz detayda yaratın.</p>
                 </div>
                 
-                <div class="glass p-8 rounded-2xl feature-card interactive gsap-reveal hover:shadow-[0_0_30px_rgba(255,0,127,0.3)] transition-all duration-300">
-                    <div class="w-16 h-16 rounded-full bg-neonPink/20 flex items-center justify-center text-neonPink text-3xl mb-6 shadow-[0_0_15px_rgba(255,0,127,0.5)]">
-                        <i class="fa-solid fa-crosshairs"></i>
-                    </div>
+                <div class="glass p-8 rounded-2xl interactive anim-trigger hover:shadow-[0_0_30px_rgba(255,0,127,0.3)] md:-translate-y-4">
+                    <div class="w-16 h-16 rounded-full bg-neonPink/20 flex items-center justify-center text-neonPink text-3xl mb-6"><i class="fa-solid fa-crosshairs"></i></div>
                     <h4 class="text-2xl font-bold text-white mb-3">Gecikmesiz Tepkime</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">7200MHz RAM kalibrasyonu ve özel M.2 disk altyapımızla, silahlı çatışmalarda ve sürüşte 0 desync garantisi.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">7200MHz RAM kalibrasyonu ve özel M.2 disk altyapımızla 0 desync garantisi.</p>
                 </div>
 
-                <div class="glass p-8 rounded-2xl feature-card interactive gsap-reveal hover:shadow-[0_0_30px_rgba(255,126,95,0.3)] transition-all duration-300">
-                    <div class="w-16 h-16 rounded-full bg-sunsetOrange/20 flex items-center justify-center text-sunsetOrange text-3xl mb-6 shadow-[0_0_15px_rgba(255,126,95,0.5)]">
-                        <i class="fa-solid fa-lightbulb"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-white mb-3">Dinamik Işık & Shader</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Oyun içi görsel modlarla tam uyumlu, gece mekanlarına can veren özel dinamik ışıklandırma modülleri.</p>
+                <div class="glass p-8 rounded-2xl interactive anim-trigger hover:shadow-[0_0_30px_rgba(255,126,95,0.3)]">
+                    <div class="w-16 h-16 rounded-full bg-sunsetOrange/20 flex items-center justify-center text-sunsetOrange text-3xl mb-6"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <h4 class="text-2xl font-bold text-white mb-3">Dinamik Borsa</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Oyuncuların taleplerine göre anlık değişen piyasa değerleri ve illegal meslek kârları.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Meslekler & Ekonomi -->
-    <section id="jobs" class="py-24 relative z-20 bg-black/40 border-y border-neonPurple/20">
+    <!-- Yol Haritası (Timeline) -->
+    <section id="roadmap" class="py-20 relative z-20">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 section-title gsap-reveal">
-                <h3 class="text-4xl md:text-5xl font-black text-white uppercase neon-text">Kariyer & Ekonomi</h3>
-                <p class="text-gray-400 mt-2 text-sm">Hard RP dünyasında para kazanmanın yolları.</p>
+            <div class="text-center mb-16 anim-trigger">
+                <h3 class="text-3xl md:text-5xl font-black text-white uppercase neon-text">Geliştirme Takvimi</h3>
+                <p class="text-gray-400 mt-2 text-sm">ParadiseV Sezon 1 Yol Haritası</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Legal Meslekler -->
-                <div class="glass p-8 rounded-2xl job-card gsap-reveal interactive border-l-4 border-l-blue-500">
-                    <h4 class="text-3xl font-black text-blue-500 mb-6 flex items-center gap-3"><i class="fa-solid fa-briefcase"></i> Legal Sektör</h4>
-                    <ul class="space-y-4">
-                        <li class="flex justify-between items-center bg-white/5 p-4 rounded-lg hover:bg-white/10 transition">
-                            <span class="font-bold text-gray-200">LSPD Memuru</span>
-                            <span class="text-xs font-bold text-blue-400 bg-blue-500/20 px-3 py-1 rounded-full">Yüksek Maaş</span>
-                        </li>
-                        <li class="flex justify-between items-center bg-white/5 p-4 rounded-lg hover:bg-white/10 transition">
-                            <span class="font-bold text-gray-200">Mekanik</span>
-                            <span class="text-xs font-bold text-yellow-400 bg-yellow-500/20 px-3 py-1 rounded-full">Kendi İşin</span>
-                        </li>
-                        <li class="flex justify-between items-center bg-white/5 p-4 rounded-lg hover:bg-white/10 transition">
-                            <span class="font-bold text-gray-200">EMS Çalışanı</span>
-                            <span class="text-xs font-bold text-green-400 bg-green-500/20 px-3 py-1 rounded-full">Güvenceli</span>
-                        </li>
-                    </ul>
+            <div class="timeline-container">
+                <div class="timeline-item left anim-trigger-left">
+                    <div class="glass p-6 rounded-xl border-l-4 border-l-neonPink">
+                        <h4 class="text-xl font-bold text-white">V1.0 - Şehrin Doğuşu</h4>
+                        <span class="text-neonPink text-xs font-bold mb-3 block">Şu An Aktif</span>
+                        <p class="text-gray-400 text-sm">Temel ekonomi sistemi, LSPD entegrasyonu ve galeri scriptlerinin aktifleştirilmesi.</p>
+                    </div>
                 </div>
-
-                <!-- İllegal Meslekler -->
-                <div class="glass p-8 rounded-2xl job-card gsap-reveal interactive border-l-4 border-l-red-500">
-                    <h4 class="text-3xl font-black text-red-500 mb-6 flex items-center gap-3"><i class="fa-solid fa-skull"></i> Yeraltı Ağı</h4>
-                    <ul class="space-y-4">
-                        <li class="flex justify-between items-center bg-white/5 p-4 rounded-lg hover:bg-white/10 transition">
-                            <span class="font-bold text-gray-200">Araç Kaçakçılığı</span>
-                            <span class="text-xs font-bold text-red-400 bg-red-500/20 px-3 py-1 rounded-full">Yüksek Risk</span>
-                        </li>
-                        <li class="flex justify-between items-center bg-white/5 p-4 rounded-lg hover:bg-white/10 transition">
-                            <span class="font-bold text-gray-200">Madde Üretimi</span>
-                            <span class="text-xs font-bold text-purple-400 bg-purple-500/20 px-3 py-1 rounded-full">Düzenli Gelir</span>
-                        </li>
-                        <li class="flex justify-between items-center bg-white/5 p-4 rounded-lg hover:bg-white/10 transition">
-                            <span class="font-bold text-gray-200">Silah Tüccarlığı</span>
-                            <span class="text-xs font-bold text-red-500 bg-red-900/30 px-3 py-1 rounded-full">Aşırı Riskli</span>
-                        </li>
-                    </ul>
+                <div class="timeline-item right anim-trigger-right">
+                    <div class="glass p-6 rounded-xl border-l-4 border-l-sunsetOrange">
+                        <h4 class="text-xl font-bold text-white">V1.2 - Yeraltı Uyanıyor</h4>
+                        <span class="text-sunsetOrange text-xs font-bold mb-3 block">Çok Yakında</span>
+                        <p class="text-gray-400 text-sm">İllegal craft sistemleri, araç parçalama ve gizli karaborsa satıcılarının eklenmesi.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left anim-trigger-left">
+                    <div class="glass p-6 rounded-xl border-l-4 border-l-neonPurple">
+                        <h4 class="text-xl font-bold text-white">V1.5 - Adalet Terazisi</h4>
+                        <span class="text-neonPurple text-xs font-bold mb-3 block">Gelecek Güncelleme</span>
+                        <p class="text-gray-400 text-sm">Gelişmiş mahkeme sistemi, avukatlık mesleği ve cezaevi (DoC) rollerinin açılması.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Yönetim (3D Flip Kartlar) -->
-    <section id="team" class="py-24 relative z-20 overflow-hidden">
+    <!-- WIKI / Kurallar (Akordeon) -->
+    <section id="wiki" class="py-20 relative z-20 bg-black/50 border-y border-neonPurple/30">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12 anim-trigger">
+                <h3 class="text-3xl md:text-5xl font-black text-white uppercase neon-text">Wiki & Kurallar</h3>
+                <p class="text-gray-400 mt-2 text-sm">Sunucumuzda "Hard RP" standartları geçerlidir. Mülakattan önce mutlaka okuyun.</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="accordion-item glass rounded-xl overflow-hidden interactive anim-trigger">
+                    <div class="p-5 cursor-pointer flex justify-between items-center acc-header">
+                        <h4 class="font-bold text-white text-base md:text-lg flex items-center gap-3"><i class="fa-solid fa-ghost text-neonPink"></i> Fear RP & Cop Bait</h4>
+                        <i class="fa-solid fa-chevron-down text-neonPurple transition-transform duration-300 acc-icon"></i>
+                    </div>
+                    <div class="accordion-content bg-black/60">
+                        <div class="px-5 pb-5 pt-2 text-gray-300 text-sm leading-relaxed">
+                            <strong class="text-white">Fear RP:</strong> Gerçek hayatta hayatınız tehlikedeyken yaşayacağınız korkuyu canlandırmaktır. Silah çekilmişken telsiz kullanamaz veya kaçamazsınız.<br><br>
+                            <strong class="text-white">Cop Bait:</strong> Sırf polislerle kovalamacaya girmek için polisin önünde drift atmak kesinlikle yasaktır.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item glass rounded-xl overflow-hidden interactive anim-trigger">
+                    <div class="p-5 cursor-pointer flex justify-between items-center acc-header">
+                        <h4 class="font-bold text-white text-base md:text-lg flex items-center gap-3"><i class="fa-solid fa-skull-crossbones text-sunsetOrange"></i> Yaralanma & Sakatlık Rolü</h4>
+                        <i class="fa-solid fa-chevron-down text-neonPurple transition-transform duration-300 acc-icon"></i>
+                    </div>
+                    <div class="accordion-content bg-black/60">
+                        <div class="px-5 pb-5 pt-2 text-gray-300 text-sm leading-relaxed">
+                            Vurulup bayıldığınızda (EMS sizi kaldırdığında), minimum 24 saat boyunca sakatlık rolü yapmak zorundasınız. Koşamaz, meslek yapamaz ve yeni bir çatışmaya dahil olamazsınız.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item glass rounded-xl overflow-hidden interactive anim-trigger">
+                    <div class="p-5 cursor-pointer flex justify-between items-center acc-header">
+                        <h4 class="font-bold text-white text-base md:text-lg flex items-center gap-3"><i class="fa-solid fa-eye-slash text-neonPurple"></i> Metagaming (MG)</h4>
+                        <i class="fa-solid fa-chevron-down text-neonPurple transition-transform duration-300 acc-icon"></i>
+                    </div>
+                    <div class="accordion-content bg-black/60">
+                        <div class="px-5 pb-5 pt-2 text-gray-300 text-sm leading-relaxed">
+                            OOC (Karakter Dışı) yollarla öğrenilen bir bilgiyi IC (Oyun İçi) olarak kullanmak sınırsız ban sebebidir. Yayıncı ghostlamak yasaktır.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mağaza -->
+    <section id="store" class="py-20 relative z-20">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20 section-title gsap-reveal">
-                <h2 class="text-neonPink font-bold tracking-widest text-sm uppercase mb-2">Mimarlar</h2>
-                <h3 class="text-4xl md:text-5xl font-black text-white uppercase neon-text">Yönetim Ekibi</h3>
+            <div class="text-center mb-16 anim-trigger">
+                <h2 class="text-neonPink font-bold tracking-widest text-sm uppercase mb-2">Sunucuyu Destekle</h2>
+                <h3 class="text-3xl md:text-5xl font-black text-white uppercase neon-text">Kozmetik Mağaza</h3>
+                <p class="text-gray-400 mt-2 text-sm">Sunucumuzda oyuna etki eden P2W ürünler satılmaz.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Yönetici 1 -->
-                <div class="group perspective-1000 w-full h-80 cursor-pointer team-card gsap-reveal">
-                    <div class="relative w-full h-full transform-style-3d team-card-inner rounded-2xl shadow-[0_0_20px_rgba(157,0,255,0.2)] group-hover:shadow-[0_0_40px_rgba(157,0,255,0.5)]">
-                        <!-- Ön Yüz -->
-                        <div class="absolute inset-0 backface-hidden glass rounded-2xl flex flex-col items-center justify-center p-6 border-b-4 border-neonPurple">
-                            <div class="w-24 h-24 rounded-full bg-black mb-4 overflow-hidden border-2 border-neonPurple">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Founder" alt="Avatar" class="w-full h-full object-cover">
-                            </div>
-                            <h4 class="text-2xl font-black text-white tracking-widest">GHOST</h4>
-                            <span class="text-neonPurple font-bold text-sm uppercase mt-1">Kurucu</span>
-                        </div>
-                        <!-- Arka Yüz -->
-                        <div class="absolute inset-0 backface-hidden rotate-y-180 glass rounded-2xl flex flex-col items-center justify-center p-6 text-center border-b-4 border-neonPurple bg-gradient-to-t from-neonPurple/20 to-transparent">
-                            <i class="fa-solid fa-quote-left text-3xl text-neonPurple/50 mb-4"></i>
-                            <p class="text-gray-300 font-bold mb-4">"Ekonomiyi kırmak yok, rolü yaşamak var."</p>
-                            <span class="text-sm text-gray-500 font-bold">@ghost_rp</span>
-                        </div>
-                    </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="glass p-8 rounded-2xl text-center interactive anim-trigger border-t-4 border-t-neonPurple">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-neonPurple/20 flex items-center justify-center text-neonPurple mb-4"><i class="fa-solid fa-car-side text-2xl"></i></div>
+                    <h4 class="text-xl font-bold text-white mb-2">Özel Plaka</h4>
+                    <p class="text-gray-400 text-sm mb-0">Aracınıza sadece size özel, karakter isminizi yansıtan harf ve rakam kombinasyonlu plaka.</p>
                 </div>
-
-                <!-- Yönetici 2 -->
-                <div class="group perspective-1000 w-full h-80 cursor-pointer team-card gsap-reveal md:translate-y-6">
-                    <div class="relative w-full h-full transform-style-3d team-card-inner rounded-2xl shadow-[0_0_20px_rgba(255,0,127,0.2)] group-hover:shadow-[0_0_40px_rgba(255,0,127,0.5)]">
-                        <div class="absolute inset-0 backface-hidden glass rounded-2xl flex flex-col items-center justify-center p-6 border-b-4 border-neonPink">
-                            <div class="w-24 h-24 rounded-full bg-black mb-4 overflow-hidden border-2 border-neonPink">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Dev" alt="Avatar" class="w-full h-full object-cover">
-                            </div>
-                            <h4 class="text-2xl font-black text-white tracking-widest">NEXUS</h4>
-                            <span class="text-neonPink font-bold text-sm uppercase mt-1">Lead Developer</span>
-                        </div>
-                        <div class="absolute inset-0 backface-hidden rotate-y-180 glass rounded-2xl flex flex-col items-center justify-center p-6 text-center border-b-4 border-neonPink bg-gradient-to-t from-neonPink/20 to-transparent">
-                            <i class="fa-solid fa-code text-3xl text-neonPink/50 mb-4"></i>
-                            <p class="text-gray-300 font-bold mb-4">"FPS değerlerinizi maksimize etmek için buradayım."</p>
-                            <span class="text-sm text-gray-500 font-bold">@nexus_dev</span>
-                        </div>
-                    </div>
+                <div class="glass p-8 rounded-2xl text-center interactive anim-trigger border-t-4 border-t-neonPink md:-translate-y-4">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-neonPink/20 flex items-center justify-center text-neonPink mb-4"><i class="fa-solid fa-mobile-screen text-2xl"></i></div>
+                    <h4 class="text-xl font-bold text-white mb-2">Özel Telefon No</h4>
+                    <p class="text-gray-400 text-sm mb-0">Şehirde akılda kalıcı, örneğin (555-0001) tarzında özel VIP telefon numarası.</p>
                 </div>
-
-                <!-- Yönetici 3 -->
-                <div class="group perspective-1000 w-full h-80 cursor-pointer team-card gsap-reveal">
-                    <div class="relative w-full h-full transform-style-3d team-card-inner rounded-2xl shadow-[0_0_20px_rgba(255,126,95,0.2)] group-hover:shadow-[0_0_40px_rgba(255,126,95,0.5)]">
-                        <div class="absolute inset-0 backface-hidden glass rounded-2xl flex flex-col items-center justify-center p-6 border-b-4 border-sunsetOrange">
-                            <div class="w-24 h-24 rounded-full bg-black mb-4 overflow-hidden border-2 border-sunsetOrange">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Admin" alt="Avatar" class="w-full h-full object-cover">
-                            </div>
-                            <h4 class="text-2xl font-black text-white tracking-widest">VENOM</h4>
-                            <span class="text-sunsetOrange font-bold text-sm uppercase mt-1">Community Staff</span>
-                        </div>
-                        <div class="absolute inset-0 backface-hidden rotate-y-180 glass rounded-2xl flex flex-col items-center justify-center p-6 text-center border-b-4 border-sunsetOrange bg-gradient-to-t from-sunsetOrange/20 to-transparent">
-                            <i class="fa-solid fa-shield-halved text-3xl text-sunsetOrange/50 mb-4"></i>
-                            <p class="text-gray-300 font-bold mb-4">"Şehirde adaleti ve Hard RP standartlarını koruruz."</p>
-                            <span class="text-sm text-gray-500 font-bold">@venom_staff</span>
-                        </div>
-                    </div>
+                <div class="glass p-8 rounded-2xl text-center interactive anim-trigger border-t-4 border-t-sunsetOrange">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-sunsetOrange/20 flex items-center justify-center text-sunsetOrange mb-4"><i class="fa-solid fa-user-tie text-2xl"></i></div>
+                    <h4 class="text-xl font-bold text-white mb-2">Custom PED</h4>
+                    <p class="text-gray-400 text-sm mb-0">Rolünüze uygun, GTA 5 evrenine ters düşmeyecek özel bir PED modeli.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Başvuru Formu & Webhook -->
-    <section id="apply" class="py-24 relative z-20 overflow-hidden border-t border-neonPurple/20 bg-black/50">
+    <!-- Sosyal Medya -->
+    <section id="social" class="py-20 relative z-20 bg-black/40 border-y border-neonPurple/30">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="mb-12 anim-trigger">
+                <h2 class="text-neonPink font-bold tracking-widest text-sm uppercase mb-2">Aramıza Katıl</h2>
+                <h3 class="text-3xl md:text-5xl font-black text-white uppercase neon-text">Sosyal Ağlar</h3>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:flex justify-center gap-4 md:gap-8 max-w-[280px] sm:max-w-none mx-auto">
+                <a href="#" class="social-btn discord-btn glass w-full sm:w-28 h-28 rounded-2xl flex flex-col items-center justify-center gap-2 border-white/10 interactive magnetic anim-trigger-left">
+                    <i class="fa-brands fa-discord text-4xl"></i><span class="text-xs font-bold uppercase tracking-wider">Discord</span>
+                </a>
+                <a href="#" class="social-btn youtube-btn glass w-full sm:w-28 h-28 rounded-2xl flex flex-col items-center justify-center gap-2 border-white/10 interactive magnetic anim-trigger-left">
+                    <i class="fa-brands fa-youtube text-4xl"></i><span class="text-xs font-bold uppercase tracking-wider">YouTube</span>
+                </a>
+                <a href="#" class="social-btn instagram-btn glass w-full sm:w-28 h-28 rounded-2xl flex flex-col items-center justify-center gap-2 border-white/10 interactive magnetic anim-trigger-right">
+                    <i class="fa-brands fa-instagram text-4xl"></i><span class="text-xs font-bold uppercase tracking-wider">Instagram</span>
+                </a>
+                <a href="#" class="social-btn x-btn glass w-full sm:w-28 h-28 rounded-2xl flex flex-col items-center justify-center gap-2 border-white/10 interactive magnetic anim-trigger-right">
+                    <i class="fa-brands fa-x-twitter text-4xl"></i><span class="text-xs font-bold uppercase tracking-wider">Twitter</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Multi-Step Kayıt Formu -->
+    <section id="apply" class="py-24 relative z-20 overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(255,0,127,0.1),transparent_60%)]"></div>
-        <div class="max-w-5xl mx-auto px-6 relative z-10">
+        <div class="max-w-4xl mx-auto px-4 md:px-6 relative z-10">
             
-            <div class="text-center mb-12 apply-header gsap-reveal">
-                <i class="fa-solid fa-file-signature text-5xl text-neonPink mb-4 drop-shadow-[0_0_15px_rgba(255,0,127,0.8)]"></i>
-                <h2 class="text-4xl font-black text-white uppercase neon-text">Resmi Kayıt Formu</h2>
-                <p class="text-gray-400 mt-3">Sistem doğrudan Discord mülakat kanalımıza bağlıdır.</p>
+            <div class="text-center mb-10 anim-trigger">
+                <h3 class="text-3xl md:text-5xl font-black text-white uppercase neon-text">Whitelist Başvurusu</h3>
+                <p class="text-gray-400 mt-2 text-sm">Sunucumuza katılmak için aşağıdaki mülakat adımlarını eksiksiz tamamlayın.</p>
             </div>
 
-            <div class="glass rounded-3xl p-6 md:p-12 shadow-[0_0_40px_rgba(157,0,255,0.15)] apply-form-container relative overflow-hidden border border-neonPurple/40 gsap-reveal">
+            <div class="glass rounded-3xl p-6 md:p-10 shadow-[0_0_40px_rgba(157,0,255,0.15)] relative overflow-hidden anim-trigger">
+                
                 <div id="successOverlay" class="absolute inset-0 bg-darkBg/95 backdrop-blur-md z-50 hidden flex-col items-center justify-center text-center opacity-0">
-                    <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(74,222,128,0.5)] scale-0 success-icon">
-                        <i class="fa-solid fa-check text-5xl text-white"></i>
-                    </div>
-                    <h3 class="text-3xl font-black text-white mb-2 translate-y-4 success-text opacity-0">Başvurun Başarıyla İletildi!</h3>
-                    <p class="text-gray-400 translate-y-4 success-text opacity-0">Yönetim ekibi Discord üzerinden iletişime geçecektir.</p>
+                    <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(34,197,94,0.5)] success-icon"><i class="fa-solid fa-check text-4xl text-white"></i></div>
+                    <h3 class="text-2xl font-black text-white mb-2 success-text">Başvurun İletildi!</h3>
+                    <p class="text-gray-400 success-text text-sm">Yönetim ekibi Discord üzerinden iletişime geçecektir.</p>
                 </div>
 
-                <form id="whitelistForm" class="space-y-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 form-element">
-                        <div>
-                            <label class="block text-sm text-gray-300 font-bold mb-2">Discord ID / Kullanıcı Adı</label>
-                            <input type="text" id="discordId" class="custom-input interactive" placeholder="örn: kullaniciadi#1234" required>
+                <div class="flex justify-between items-center mb-10 relative px-2">
+                    <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1.5 bg-white/10 -z-10 rounded-full"></div>
+                    <div class="absolute left-0 top-1/2 -translate-y-1/2 h-1.5 bg-gradient-to-r from-neonPurple to-neonPink transition-all duration-500 -z-10 rounded-full" id="progress-bar" style="width: 0%;"></div>
+                    <div class="step-indicator active w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg bg-darkBg border-2 border-white/20 text-gray-400" id="ind-1">1</div>
+                    <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg bg-darkBg border-2 border-white/20 text-gray-400" id="ind-2">2</div>
+                    <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg bg-darkBg border-2 border-white/20 text-gray-400" id="ind-3">3</div>
+                </div>
+
+                <form id="whitelistForm">
+                    <!-- ADIM 1 -->
+                    <div class="form-step active" id="step-1">
+                        <h4 class="text-xl font-bold text-neonPink mb-6 border-b border-white/10 pb-3"><i class="fa-solid fa-user-astronaut mr-2"></i> Adım 1: Kişisel Bilgiler (OOC)</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+                            <div><label class="block text-sm font-bold text-gray-300 mb-2">Discord Adınız</label><input type="text" id="discordId" class="custom-input" placeholder="örn: kullanıcı#1234" required></div>
+                            <div><label class="block text-sm font-bold text-gray-300 mb-2">Steam Hex</label><input type="text" id="steamHex" class="custom-input" placeholder="steam:1100001..." required></div>
+                            <div><label class="block text-sm font-bold text-gray-300 mb-2">Gerçek Yaş</label><input type="number" id="realAge" class="custom-input" placeholder="Min 16" min="16" required></div>
+                            <div><label class="block text-sm font-bold text-gray-300 mb-2">FiveM Saati</label><input type="number" id="fivemHours" class="custom-input" placeholder="Örn: 500" required></div>
                         </div>
-                        <div>
-                            <label class="block text-sm text-gray-300 font-bold mb-2">Steam Hex Kodu</label>
-                            <input type="text" id="steamHex" class="custom-input interactive" placeholder="steam:1100001xxxxxxxx" required>
-                        </div>
+                        <button type="button" class="next-btn w-full py-4 bg-white text-black font-black text-lg rounded-xl hover:bg-gray-200 transition interactive shadow-[0_0_20px_rgba(255,255,255,0.2)]">Sonraki Adım <i class="fa-solid fa-arrow-right ml-2"></i></button>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 form-element">
-                        <div>
-                            <label class="block text-sm text-gray-300 font-bold mb-2">Karakter Adı ve Soyadı</label>
-                            <input type="text" id="charName" class="custom-input interactive" placeholder="İsim Soyisim" required>
+
+                    <!-- ADIM 2 -->
+                    <div class="form-step" id="step-2">
+                        <h4 class="text-xl font-bold text-neonPurple mb-6 border-b border-white/10 pb-3"><i class="fa-solid fa-mask mr-2"></i> Adım 2: Karakter Bilgileri (IC)</h4>
+                        <div class="space-y-5 mb-8">
+                            <div><label class="block text-sm font-bold text-gray-300 mb-2">Karakter Adı ve Soyadı</label><input type="text" id="charName" class="custom-input" placeholder="Los Santos'a uygun özgün bir isim seçin" required></div>
+                            <div><label class="block text-sm font-bold text-gray-300 mb-2">Karakterinizin Hikayesi</label><textarea id="charStory" class="custom-input h-40 resize-none" placeholder="Şehre geliş amacı, geçmişi, korkuları ve zayıflıkları nelerdir? Detaylı anlatın..." required></textarea></div>
                         </div>
-                        <div>
-                            <label class="block text-sm text-gray-300 font-bold mb-2">Gerçek Yaşınız</label>
-                            <input type="number" id="realAge" class="custom-input interactive" placeholder="18" min="16" required>
+                        <div class="flex gap-4">
+                            <button type="button" class="prev-btn w-1/3 py-4 bg-transparent border-2 border-gray-600 text-white font-bold rounded-xl hover:bg-gray-800 transition interactive"><i class="fa-solid fa-arrow-left mr-2"></i> Geri</button>
+                            <button type="button" class="next-btn w-2/3 py-4 bg-white text-black font-black text-lg rounded-xl hover:bg-gray-200 transition interactive shadow-[0_0_20px_rgba(255,255,255,0.2)]">Sonraki <i class="fa-solid fa-arrow-right ml-2"></i></button>
                         </div>
                     </div>
 
-                    <div class="form-element">
-                        <label class="block text-sm text-gray-300 font-bold mb-2">Karakterinizin Geçmişi ve Los Santos'taki Hedefleri</label>
-                        <textarea id="charStory" class="custom-input resize-none h-32 interactive" placeholder="Karakteriniz nereden geliyor, amaçları nelerdir? Detaylıca anlatın..." required></textarea>
+                    <!-- ADIM 3 -->
+                    <div class="form-step" id="step-3">
+                        <h4 class="text-xl font-bold text-sunsetOrange mb-6 border-b border-white/10 pb-3"><i class="fa-solid fa-gavel mr-2"></i> Adım 3: Rol Mülakatı</h4>
+                        <div class="space-y-6 mb-8">
+                            <div class="bg-black/40 p-5 rounded-xl border border-sunsetOrange/30">
+                                <label class="block text-sm font-bold text-white mb-3">Soru 1: <span class="font-normal text-gray-300">Issız bir sokakta, silahlı 3 kişi önünüzü kesti. Ne yaparsınız?</span></label>
+                                <textarea id="rpAnswer1" class="custom-input h-24 resize-none" placeholder="Korku rolü (Fear RP) kurallarını dikkate alarak yazın..." required></textarea>
+                            </div>
+                            <div class="bg-black/40 p-5 rounded-xl border border-sunsetOrange/30">
+                                <label class="block text-sm font-bold text-white mb-3">Soru 2: <span class="font-normal text-gray-300">Vuruldunuz ve bayıldınız. EMS hastaneden çıkardı, rolünüz nasıl devam eder?</span></label>
+                                <textarea id="rpAnswer2" class="custom-input h-24 resize-none" placeholder="Sakatlık kuralını düşünerek cevaplayın..." required></textarea>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <button type="button" class="prev-btn w-1/3 py-4 bg-transparent border-2 border-gray-600 text-white font-bold rounded-xl hover:bg-gray-800 transition interactive"><i class="fa-solid fa-arrow-left mr-2"></i> Geri</button>
+                            <button type="submit" id="submitBtn" class="w-2/3 py-4 bg-gradient-to-r from-neonPurple to-neonPink text-white font-black text-lg rounded-xl hover:shadow-[0_0_30px_rgba(255,0,127,0.6)] transition interactive flex justify-center items-center gap-2">
+                                GÖNDER <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
                     </div>
-
-                    <!-- Mini RP Testi -->
-                    <div class="form-element bg-black/40 p-5 rounded-lg border border-neonPurple/30">
-                        <label class="block text-sm text-white font-bold mb-2">RP Test: <span class="font-normal text-gray-400">Silahlı 3 kişi yolunuzu kesti. (Fear RP) Ne yaparsınız?</span></label>
-                        <select id="rpTest" class="custom-input interactive" required>
-                            <option value="">Seçim Yapınız...</option>
-                            <option value="fail">Hemen silahımı çekip çatışırım.</option>
-                            <option value="pass">Söyleneni yapar, kendi hayatımı riske atmam.</option>
-                            <option value="fail">Telsizden arkadaşlarıma haber verip kaçarım.</option>
-                        </select>
-                    </div>
-
-                    <div class="flex items-center gap-3 pt-4 form-element">
-                        <input type="checkbox" id="rules" class="w-5 h-5 accent-neonPink cursor-pointer interactive" required>
-                        <label for="rules" class="text-sm text-gray-400 cursor-pointer hover:text-white transition">Hard RP kurallarını ve ekonomi düzenini kabul ediyorum.</label>
-                    </div>
-
-                    <button type="submit" id="submitBtn" class="w-full py-4 bg-gradient-to-r from-neonPurple to-neonPink text-white font-black text-lg rounded-xl hover:shadow-[0_0_40px_rgba(255,0,127,0.6)] transition-all duration-300 flex items-center justify-center gap-3 group interactive form-element">
-                        <span>BAŞVURUYU GÖNDER</span>
-                        <i class="fa-solid fa-paper-plane group-hover:translate-x-2 transition-transform"></i>
-                    </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer class="bg-[#0a0312] py-12 border-t border-neonPurple/30 text-center relative z-20">
-        <h2 class="font-logo text-4xl text-white mb-6 neon-text">ParadiseV</h2>
-        <p class="text-gray-600 text-sm">&copy; 2026 Paradise Roleplay. Tüm sistemler aktif.</p>
+    <footer class="bg-[#0a0312] py-8 border-t border-neonPurple/30 text-center relative z-20">
+        <h2 class="font-logo text-2xl text-white mb-2 neon-text">ParadiseV</h2>
+        <p class="text-gray-600 text-xs">&copy; 2026 Paradise Roleplay. Tüm hakları saklıdır.</p>
     </footer>
 
     <script>
+        // Müzik Kontrolü
         const musicBtn = document.getElementById('musicToggleBtn');
         const bgMusic = document.getElementById('bg-music');
         const musicIcon = document.getElementById('musicIcon');
         bgMusic.volume = 0.2; 
-
         musicBtn.addEventListener('click', () => {
-            if (bgMusic.paused) {
-                bgMusic.play();
-                musicBtn.classList.remove('music-paused');
-                musicIcon.classList.replace('fa-play', 'fa-pause');
-            } else {
-                bgMusic.pause();
-                musicBtn.classList.add('music-paused');
-                musicIcon.classList.replace('fa-pause', 'fa-play');
-            }
+            if (bgMusic.paused) { bgMusic.play(); musicBtn.classList.remove('music-paused'); musicIcon.classList.replace('fa-play', 'fa-pause'); } 
+            else { bgMusic.pause(); musicBtn.classList.add('music-paused'); musicIcon.classList.replace('fa-pause', 'fa-play'); }
         });
 
+        // IP Kopyalama
+        const copyIpBtn = document.getElementById('copyIpBtn');
+        if(copyIpBtn) {
+            const ipTooltip = document.getElementById('ipTooltip');
+            copyIpBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText('play.paradisev.com');
+                ipTooltip.style.opacity = '1';
+                setTimeout(() => { ipTooltip.style.opacity = '0'; }, 2000);
+            });
+        }
+
+        // GSAP ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
         let mm = gsap.matchMedia();
 
         function createParticles() {
             const container = document.getElementById('particles');
             const colors = ['#9d00ff', '#ff007f', '#ff7e5f'];
-            const particleCount = window.innerWidth < 768 ? 10 : 30; 
-            for (let i = 0; i < particleCount; i++) {
+            for (let i = 0; i < 20; i++) {
                 let particle = document.createElement('div');
                 particle.classList.add('particle');
                 let size = Math.random() * 6 + 2;
@@ -452,57 +529,54 @@
             tlLoader.to(".loader-bar", { width: "100%", duration: 1.2, ease: "power2.inOut" })
             .to(".loader-bg", { y: "-100%", duration: 0.6, ease: "power3.inOut", onComplete: () => {
                 document.querySelector('.loader-bg').style.display = 'none';
-                
-                // Gizli objeleri görünür yap (FOUC engellemek için)
-                gsap.set(".gsap-reveal", { visibility: "visible" });
                 initAnimations();
             }}, "+=0.2");
         });
 
         function initAnimations() {
-            gsap.fromTo(".nav-links a, .nav-links button", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 });
+            gsap.fromTo(".nav-links a", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 });
             gsap.fromTo(".hero-sun", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.2, ease: "back.out(1.5)" });
             gsap.fromTo(".hero-anim", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: "power2.out" }, "-=0.8");
 
             mm.add("(min-width: 768px)", () => {
-                // Section Title (Alttan Yumuşak)
-                gsap.utils.toArray('.section-title').forEach(title => {
-                    gsap.fromTo(title, { opacity: 0, y: 60 }, { scrollTrigger: { trigger: title, start: "top 85%" }, opacity: 1, y: 0, duration: 1, ease: "back.out(1.2)" });
+                gsap.utils.toArray('.anim-trigger').forEach(el => {
+                    gsap.fromTo(el, { opacity: 0, y: 40 }, { scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none reverse" }, opacity: 1, y: 0, duration: 0.6 });
                 });
-                
-                // Sistem Kartları (Dönerek)
-                gsap.fromTo(".feature-card", { opacity: 0, y: 100, rotationX: -15 }, { scrollTrigger: { trigger: "#features", start: "top 75%" }, opacity: 1, y: 0, rotationX: 0, duration: 1, stagger: 0.15, ease: "power3.out" });
-                
-                // Meslek Kartları (Sağ ve Soldan Çarpışarak)
-                gsap.utils.toArray(".job-card").forEach((card, i) => {
-                    gsap.fromTo(card, { opacity: 0, x: i % 2 === 0 ? -100 : 100 }, { scrollTrigger: { trigger: "#jobs", start: "top 75%" }, opacity: 1, x: 0, duration: 1, ease: "power2.out", delay: i * 0.2 });
+                gsap.utils.toArray('.anim-trigger-left').forEach(el => {
+                    gsap.fromTo(el, { opacity: 0, x: -60 }, { scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }, opacity: 1, x: 0, duration: 0.7, ease: "back.out(1.2)" });
                 });
-
-                // Yönetim Ekibi Kartları (Alttan ve Büyüyerek)
-                gsap.fromTo(".team-card", { opacity: 0, y: 150, scale: 0.8 }, { scrollTrigger: { trigger: "#team", start: "top 75%" }, opacity: 1, y: 0, scale: 1, duration: 1.2, stagger: 0.2, ease: "back.out(1.4)" });
-
-                // Form Elemanları (Adım adım)
-                gsap.fromTo(".apply-header, .apply-form-container", { opacity: 0, y: 50 }, { scrollTrigger: { trigger: "#apply", start: "top 75%" }, opacity: 1, y: 0, duration: 1, ease: "power3.out" });
-                gsap.fromTo(".form-element", { opacity: 0, x: -30 }, { scrollTrigger: { trigger: "#whitelistForm", start: "top 80%" }, opacity: 1, x: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" });
+                gsap.utils.toArray('.anim-trigger-right').forEach(el => {
+                    gsap.fromTo(el, { opacity: 0, x: 60 }, { scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }, opacity: 1, x: 0, duration: 0.7, ease: "back.out(1.2)" });
+                });
             });
 
             mm.add("(max-width: 767px)", () => {
-                gsap.utils.toArray('.gsap-reveal').forEach(el => {
-                    gsap.fromTo(el, { opacity: 0, y: 20 }, { scrollTrigger: { trigger: el, start: "top 90%" }, opacity: 1, y: 0, duration: 0.5 });
+                gsap.utils.toArray('.anim-trigger, .anim-trigger-left, .anim-trigger-right').forEach(el => {
+                    gsap.fromTo(el, { opacity: 0, y: 20 }, { scrollTrigger: { trigger: el, start: "top 95%", toggleActions: "play none none reverse" }, opacity: 1, y: 0, duration: 0.4 });
                 });
             });
         }
 
+        // Akordeon
+        document.querySelectorAll('.acc-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                document.querySelectorAll('.accordion-item').forEach(other => { if(other !== item) other.classList.remove('active'); });
+                item.classList.toggle('active');
+            });
+        });
+
+        // Masaüstü Efektler
         if (window.matchMedia("(pointer: fine)").matches) {
             const cursorDot = document.querySelector('.cursor-dot');
             const cursorOutline = document.querySelector('.cursor-outline');
 
             window.addEventListener('mousemove', (e) => {
                 cursorDot.style.left = `${e.clientX}px`; cursorDot.style.top = `${e.clientY}px`;
-                cursorOutline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 200, fill: "forwards" });
+                cursorOutline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 150, fill: "forwards" });
             });
 
-            document.querySelectorAll('.interactive, a, button, input, textarea, select, .team-card').forEach(el => {
+            document.querySelectorAll('.interactive, a, button, input, textarea, .accordion-item').forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     cursorOutline.style.width = '60px'; cursorOutline.style.height = '60px';
                     cursorOutline.style.borderColor = '#9d00ff'; cursorOutline.style.backgroundColor = 'rgba(157, 0, 255, 0.1)';
@@ -512,24 +586,76 @@
                     cursorOutline.style.borderColor = '#ff007f'; cursorOutline.style.backgroundColor = 'transparent';
                 });
             });
+
+            document.querySelectorAll('.magnetic').forEach(elem => {
+                elem.addEventListener('mousemove', (e) => {
+                    const rect = elem.getBoundingClientRect();
+                    const x = (e.clientX - rect.left - rect.width / 2) * 0.3;
+                    const y = (e.clientY - rect.top - rect.height / 2) * 0.3;
+                    gsap.to(elem, { x: x, y: y, duration: 0.3, ease: "power2.out" });
+                });
+                elem.addEventListener('mouseleave', () => {
+                    gsap.to(elem, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)" });
+                });
+            });
         }
 
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
-        document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => menu.classList.add('hidden')));
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 
+        // Navbar Scroll Blur
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if(window.scrollY > 50) { nav.classList.add('glass', 'py-1'); nav.classList.remove('pt-2'); } 
+            else { nav.classList.remove('glass', 'py-1'); nav.classList.add('pt-2'); }
+        });
+
+        // FORM YÖNETİMİ
+        const steps = document.querySelectorAll('.form-step');
+        const nextBtns = document.querySelectorAll('.next-btn');
+        const prevBtns = document.querySelectorAll('.prev-btn');
+        const indicators = [document.getElementById('ind-1'), document.getElementById('ind-2'), document.getElementById('ind-3')];
+        const progressBar = document.getElementById('progress-bar');
+        let currentStep = 0;
+
+        function updateFormStep() {
+            steps.forEach((step, index) => {
+                if(index === currentStep) {
+                    step.classList.add('active');
+                    gsap.fromTo(step, {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.4});
+                } else { step.classList.remove('active'); }
+            });
+            indicators.forEach((ind, index) => {
+                if(index === currentStep) { ind.classList.add('active'); ind.classList.remove('completed'); }
+                else if (index < currentStep) { ind.classList.add('completed'); ind.classList.remove('active'); }
+                else { ind.classList.remove('active', 'completed'); }
+            });
+            progressBar.style.width = (currentStep * 50) + '%';
+        }
+
+        nextBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const currentInputs = steps[currentStep].querySelectorAll('input[required], textarea[required]');
+                let valid = true;
+                currentInputs.forEach(input => {
+                    if(!input.value.trim()) {
+                        valid = false;
+                        input.style.borderColor = '#ef4444';
+                        setTimeout(() => { input.style.borderColor = 'rgba(157, 0, 255, 0.4)'; }, 2000);
+                    }
+                });
+                if(valid) { currentStep++; updateFormStep(); } 
+            });
+        });
+
+        prevBtns.forEach(btn => { btn.addEventListener('click', () => { currentStep--; updateFormStep(); }); });
+
+        // WEBHOOK 
         document.getElementById('whitelistForm').addEventListener('submit', function(e) {
             e.preventDefault(); 
-            
-            const rpTestValue = document.getElementById('rpTest').value;
-            if(rpTestValue === "fail") {
-                alert("RP Testini geçemediniz! Lütfen Hard RP kurallarını tekrar gözden geçirin.");
-                return;
-            }
-
-            const WEBHOOK_URL = "BURAYA_DISCORD_WEBHOOK_LINKINI_YAPISTIR"; 
-            
+            const WEBHOOK_URL = "BURAYA_DISCORD_WEBHOOK_LINKINI_YAPISTIR"; // LİNK BURAYA
             const submitBtn = document.getElementById('submitBtn');
             const overlay = document.getElementById('successOverlay');
             
@@ -537,65 +663,44 @@
             submitBtn.classList.add('opacity-75', 'pointer-events-none');
 
             const payload = {
-                username: "ParadiseV Kayıt",
+                username: "ParadiseV Mülakat Merkezi",
                 avatar_url: "https://i.imgur.com/K1T7KXY.png", 
                 embeds: [{
-                    title: "🚀 Yeni Başvuru Ulaştı!",
+                    title: "🚀 Yeni Aşama Başvurusu",
                     color: 16711807,
                     fields: [
-                        { name: "🛡️ OOC Bilgiler", value: `**Discord:** ${document.getElementById('discordId').value}\n**Steam Hex:** ${document.getElementById('steamHex').value}\n**Yaş:** ${document.getElementById('realAge').value}`, inline: false },
-                        { name: "🎭 IC Bilgiler", value: `**Karakter Adı:** ${document.getElementById('charName').value}`, inline: false },
-                        { name: "📖 Karakter Hikayesi", value: `\`\`\`${document.getElementById('charStory').value}\`\`\``, inline: false }
+                        { name: "🛡️ OOC Bilgiler", value: `**Discord:** ${document.getElementById('discordId').value}\n**Steam:** ${document.getElementById('steamHex').value}\n**Yaş:** ${document.getElementById('realAge').value} | **Saat:** ${document.getElementById('fivemHours').value}`, inline: false },
+                        { name: "🎭 IC Bilgiler", value: `**İsim:** ${document.getElementById('charName').value}\n**Hikaye:** ${document.getElementById('charStory').value}`, inline: false },
+                        { name: "⚖️ Mülakat 1", value: `> ${document.getElementById('rpAnswer1').value}`, inline: false },
+                        { name: "⚖️ Mülakat 2", value: `> ${document.getElementById('rpAnswer2').value}`, inline: false }
                     ],
-                    footer: { text: "ParadiseV Yönetim Paneli" },
+                    footer: { text: "ParadiseV Yönetim" },
                     timestamp: new Date().toISOString()
                 }]
             };
 
             if (WEBHOOK_URL !== "BURAYA_DISCORD_WEBHOOK_LINKINI_YAPISTIR") {
-                fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                }).then(() => showSuccess())
-                .catch(err => {
-                    alert("Sistemsel bir hata oluştu. Webhook linkini kontrol edin.");
-                    resetBtn();
-                });
-            } else {
-                setTimeout(showSuccess, 1000);
-            }
+                fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+                .then(() => showSuccess())
+                .catch(err => { alert("Hata! Webhook linkini kontrol et."); resetBtn(); });
+            } else { setTimeout(showSuccess, 1000); }
 
             function showSuccess() {
-                overlay.classList.remove('hidden');
-                overlay.classList.add('flex');
-                
-                const tl = gsap.timeline();
-                tl.to(overlay, { opacity: 1, duration: 0.3 })
-                  .to(".success-icon", { scale: 1, rotation: 360, duration: 0.5, ease: "back.out(2)" })
-                  .to(".success-text", { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 });
+                overlay.classList.remove('hidden'); overlay.classList.add('flex');
+                gsap.to(overlay, { opacity: 1, duration: 0.3 });
+                gsap.fromTo(".success-icon", { scale: 0, rotation: -180 }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(2)" });
+                gsap.fromTo(".success-text", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 });
 
                 setTimeout(() => {
                     gsap.to(overlay, { opacity: 0, duration: 0.5, onComplete: () => {
-                        overlay.classList.add('hidden');
-                        overlay.classList.remove('flex');
+                        overlay.classList.add('hidden'); overlay.classList.remove('flex');
                         document.getElementById('whitelistForm').reset();
-                        resetBtn();
+                        currentStep = 0; updateFormStep(); resetBtn();
                         gsap.set([".success-icon", ".success-text"], { clearProps: "all" });
                     }});
                 }, 3500);
             }
-            
-            function resetBtn() {
-                submitBtn.innerHTML = '<span>BAŞVURUYU GÖNDER</span><i class="fa-solid fa-paper-plane"></i>';
-                submitBtn.classList.remove('opacity-75', 'pointer-events-none');
-            }
-        });
-
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if(window.scrollY > 50) nav.classList.add('glass');
-            else nav.classList.remove('glass');
+            function resetBtn() { submitBtn.innerHTML = 'BAŞVURUYU GÖNDER <i class="fa-solid fa-paper-plane"></i>'; submitBtn.classList.remove('opacity-75', 'pointer-events-none'); }
         });
     </script>
 </body>
